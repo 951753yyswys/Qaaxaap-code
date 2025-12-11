@@ -1,0 +1,71 @@
+//原来是思路假了，我说呢一直调不过去
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	const pair<int,int> no={-1,-1};
+	pair<int,int> dfs(int u,int now,vector<vector<int>>&g,vector<int> &col)
+	{
+		if(col[u]==0) col[u]=now;
+		else 
+		{
+			if(col[u]!=now) return {-1,-1};
+			else return {0,0};
+		}
+		pair<int,int> ret={0,0};
+		if(now==1) ret={1,0};
+		else ret={0,1};
+		for(auto v:g[u])
+		{
+			pair<int,int> lll=dfs(v,((now-1)^1)+1,g,col);
+			if(lll==no) return {-1,-1};
+			ret.first+=lll.first;
+			ret.second+=lll.second;
+		}
+		return ret;
+	}
+	int mp[707][707];
+	void work()
+	{
+		int n,m;
+		cin>>n>>m;
+		vector<vector<int>> g(n+1);
+		for(int i=1;i<=m;i++)
+		{
+			int u,v;
+			cin>>u>>v;
+			mp[u][v]=mp[v][u]=1;
+		}
+		for(int i=1;i<=n;i++)
+			for(int j=i+1;j<=n;j++)
+				if(mp[i][j]==0) g[i].push_back(j),g[j].push_back(i);
+		vector<int> col(n+1);
+		vector<pair<int,int>> ret(n+1);
+		for(int i=1;i<=n;i++)
+		{
+			if(col[i]) continue;
+			ret[i]=dfs(i,1,g,col);
+			if(ret[i]==no) 
+			{
+				cout<<-1;
+				return;
+			}
+		}
+		bitset<767> dp;
+		dp[0]=1;
+		for(int i=1;i<=n;i++) dp=(dp<<ret[i].first)|(dp<<ret[i].second);
+		int ans=0x7fffffff;
+		for(int i=0;i<=n;i++) ans=min(ans,i*(i-1)/2+(n-i)*(n-i-1)/2);
+		if(ans==0x7fffffff) ans=-1;
+		cout<<ans;
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+
