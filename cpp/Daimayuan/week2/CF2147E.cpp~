@@ -26,17 +26,11 @@ namespace Qaaxaap
 			for(int i=0;i<=31;i++) if(!gbit(orans,i)) opt.push_back(i);
 			int yans=__builtin_popcountll(orans);
 			vector<int> ans(35);
-			for(auto tmp:opt)
+			for(auto ops:opt)
 			{
-				vector<int> atmp(n);
-				for(int i=0;i<n;i++) atmp[i]=dbit(a[i],tmp);
-				int mx=*max_element(atmp.begin(),atmp.end());
-				for(int i=0;i<n;i++) if(mx==atmp[i]) 
-				{
-					a[i]=0;
-					break;
-				}
-				ans[++yans]=(1ll<<yans)-mx+ans[yans-1];
+				vector<int> b=a;
+				for(auto &tmp:b) tmp=dbit(tmp,ops);
+				
 			}
 			for(int i=0;i<=15;i++)
 			{
