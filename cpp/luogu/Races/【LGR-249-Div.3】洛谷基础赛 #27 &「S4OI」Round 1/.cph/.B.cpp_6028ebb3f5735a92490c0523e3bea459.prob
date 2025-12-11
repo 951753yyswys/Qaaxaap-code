@@ -1,0 +1,1 @@
+{"name":"Local: B","url":"d:\\code\\cpp\\luogu\\Races\\【LGR-249-Div.3】洛谷基础赛 #27 &「S4OI」Round 1\\B.cpp","tests":[{"id":1763879074291,"input":"5 2\n1 2 1\n1 2 1\n1 1 0\n2 2 1\n2 2 1","output":"3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\code\\cpp\\luogu\\Races\\【LGR-249-Div.3】洛谷基础赛 #27 &「S4OI」Round 1\\B.cpp","group":"local","local":true}

@@ -1,0 +1,113 @@
+#include<bits/stdc++.h>
+using namespace std;
+int son[100010],dep[100010],head[200020],cnt,top[200020],siz[200020],fa[100010],dfn[100010],rnf[100010],zt[100010],num;
+struct tree
+{
+	int l,r,mx;
+} t[400100];
+void pushup(int ro){t[ro].mx=max(t[ro*2].mx,t[ro*2+1].mx);}
+void build(int ro,int l,int r)
+{
+	t[ro]={l,r,0};
+	if(l==r) return;
+	int mid=l+r>>1;
+	build(ro*2,l,mid);
+	build(ro*2+1,mid+1,r);
+}
+void update(int ro,int v)
+{
+	if(t[ro].r==t[ro].l) return void(t[ro].mx=max(t[ro].mx,1));
+	int mid=t[ro].l+t[ro].r>>1;
+	if(v<=mid) update(ro*2,v);
+	else update(ro*2+1,v);
+	pushup(ro);
+}
+int query(int ro,int l,int r)
+{
+	if(t[ro].l>=l&&t[ro].r<=r) return t[ro].mx;
+	int ans=0,mid=t[ro].l+t[ro].r>>1;
+	if(l<=mid) ans=max(ans,query(ro*2,l,r));
+	if(mid<r) ans=max(ans,query(ro*2+1,l,r));
+	return ans;
+}
+struct edge
+
+{
+	int to,nxt;
+} e[200010];
+inline void add(int u,int v)
+{
+	e[++cnt]={v,head[u]};
+	head[u]=cnt;
+}
+void dfs1(int u,int f)
+{
+	int mx=-1;
+	siz[u]=0;
+	fa[u]=f;
+	dep[u]=dep[f]+1;
+	son[u]=-1;
+	for(int i=head[u];i;i=e[i].nxt)
+	{
+		int v=e[i].to;
+		if(v!=f) 
+		{
+			dfs1(v,u);
+			siz[u]+=siz[v]+1;
+			if(mx<siz[v]) mx=siz[v],son[u]=v;
+		}
+	}
+}
+void dfs2(int u,int t)
+{
+	num++;
+	dfn[u]=num;
+	rnf[num]=u;
+	top[u]=t;
+	if(son[u]==-1) return;
+	dfs2(son[u],t);
+	for(int i=head[u];i;i=e[i].nxt)
+	{
+		int v=e[i].to;
+		if(fa[u]!=v&&v!=son[u]) dfs2(v,v);
+	}
+}
+int query(int x)
+{
+	int ans=-1;
+	while(x)
+	{
+		int qy=query(1,dfn[top[x]],dfn[x]);
+		if(qy) ans=qy;
+		if(ans!=-1) break;
+		x=fa[top[x]];
+	}
+	return max(ans,1);
+}
+int main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0); cout.tie(0);
+	int n,q;
+	cin>>n>>q;
+	for(int i=1;i<n;i++) 
+	{
+		int u,v;
+		cin>>u>>v;
+		add(u,v);
+		add(v,u);
+	}
+	dfs1(1,0);
+	dfs2(1,1);
+	build(1,1,n);
+	update(1,dfn[1]);
+	for(int i=1;i<=q;i++)
+	{
+		char opt;
+		int x;
+		cin>>opt>>x;
+		if(opt=='C') update(1,dfn[x]);
+		else cout<<rnf[query(x)]<<"\n";
+	}
+	return 0;
+}

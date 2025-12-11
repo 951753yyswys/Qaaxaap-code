@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+#define int unsigned long long 
+using namespace std;
+int n,m;
+struct matrix
+{
+	int a[10][10];
+	void init(){for(int i=0;i<=3;i++) for(int j=0;j<=3;j++) a[i][j]=0;} 
+	matrix operator*(const matrix &y) const
+	{
+		matrix ans;
+		ans.init();
+		for(int i=1;i<=3;i++) for(int k=1;k<=3;k++)
+		{
+			int r=a[i][k];
+			for(int j=1;j<=3;j++) 
+				ans.a[i][j]+=r*y.a[k][j],ans.a[i][j]%=m;
+		}
+		return ans;
+	}
+} id;
+matrix qp(matrix t,matrix d,int z)
+{
+	while(z>0)
+	{
+		if(z&1) t=d*t;
+		d=d*d;
+		z>>=1;
+	}
+	return t;
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	cin>>n>>m;
+	matrix a,b;
+	a.init();
+	b.init();
+	id.init();
+	for(int i=0;i<=3;i++) id.a[i][i]=1;
+	a.a[1][2]=a.a[2][2]=a.a[2][3]=a.a[3][3]=1;
+	b.a[2][1]=b.a[3][1]=1;
+	matrix ya=a,ans=b;
+	int ls=1;
+	for(int i=10;i<=n;i*=10)
+	{
+		a=ya;
+		a.a[1][1]=i%m;
+		ans=qp(ans,a,i/10*9);
+		cout<<ans.a[1][1]<<endl;
+		ls=i;
+	}
+	a=ya;
+	a.a[1][1]=ls*10%m;
+	ans=qp(ans,a,n-ls+1);
+	cout<<ans.a[1][1];
+	return 0;
+}

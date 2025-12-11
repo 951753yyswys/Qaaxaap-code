@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	void work()
+	{
+		int t;
+		cin>>t;
+		while(t--)
+		{
+			int n,k;
+			cin>>n>>k;
+			vector<int> a(n);
+			for(auto &tmp:a) cin>>tmp;
+			vector<pair<int,int>> b;
+			int mx=0;
+			for(auto &tmp:a) 
+			{
+				if(tmp>mx)
+				{
+					b.push_back(tmp,1);
+					mx=tmp;
+					continue;
+				}
+				b[b.size()-1].second++;
+			}
+			int m=b.size();
+			vector<vector<int>> dp(k+1,vector<int>(k+1));
+			for(int i=0;i<m;i++)
+			{
+				for(int j=1;j<b[i].first;j++)
+				{
+					for(int q=0;q<=k-b[i].first;q++)
+					{
+						dp[j][k]=
+					}
+				}
+			}
+		}
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+

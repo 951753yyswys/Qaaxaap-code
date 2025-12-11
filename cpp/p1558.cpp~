@@ -1,0 +1,85 @@
+#include<bits/stdc++.h>
+#define ls ro*2
+#define rs ro*2+1
+#define ot t[ro]
+#define lt t[ro*2]
+#define rt t[ro*2+1]
+using namespace std;
+struct node
+{
+	int l,r;
+	bool lz,co;
+};
+int le,t,m;
+struct tree
+{
+	node t[300010];
+	void pushup(int ro){t[ro].co=max(t[ls].co,t[rs].co);}
+	void pushdown(int ro){if(ot.lz!=-1)lt.lz=lt.co=rt.lz=rt.co=ot.lz,ot.lz=-1;}
+	void build(int ro,int l,int r)
+	{
+		t[ro]={l,r,0,0};
+		if(l==r) return;
+		int mid=l+r>>1;
+		build(ro*2,l,mid);
+		build(ro*2+1,mid+1,r);
+	}
+	void update(int ro,int l,int r,int v)
+	{
+		if(t[ro].l>=l&&t[ro].r<=r){t[ro].lz=v,t[ro].co=v;return;}
+		pushdown(ro);
+		int mid=(t[ro].l+t[ro].r)>>1;
+		if(l<=mid) update(ro*2,l,r,v);
+		if(r>mid) update(ro*2+1,l,r,v);
+		pushup(ro);
+	}
+	int query(int ro,int l,int r)
+	{
+		if(t[ro].l>=l&&t[ro].r<=r) return t[ro].co;
+		pushdown(ro);
+		int mid=t[ro].l+t[ro].r>>1,col=0;
+		if(mid>=l) col=max(col,query(ls,l,r));
+		if(mid<r) col=max(col,query(rs,l,r));
+		return col;
+	}
+} e[31];
+void init(){for(int i=1;i<=t;i++) e[i].build(1,1,le);}
+int ask(int l,int r)
+{
+	int ans=0;
+	for(int i=1;i<=t;i++) ans+=e[i].query(1,l,r);
+	return ans;
+}
+void change(int l,int r,int v)
+{
+	for(int i=1;i<=t;i++) e[i].update(1,l,r,0);
+	e[v].update(1,l,r,1);
+}
+int main()
+{
+	cin>>le>>t>>m;
+	init();
+	e[1].update(1,1,le,1);
+	for(int i=1;i<=m;i++)
+	{
+		char opt;
+		cin>>opt;
+		if(opt=='C')
+		{
+			int a,b,c;
+			cin>>a>>b>>c;
+			if(a>b) swap(a,b);
+			change(a,b,c);
+			//cout<<e[1].t[1].co<<" "<<e[1].t[2].co<<' '<<e[1].t[3].co<<endl;
+			//cout<<e[2].t[1].co<<" "<<e[2].t[2].co<<" "<<e[2].t[3].co<<endl;
+		}
+		else
+		{
+			int a,b;
+			cin>>a>>b;
+			if(a>b) swap(a,b);
+			cout<<ask(a,b)<<endl;
+		}
+	}
+	return 0;
+}

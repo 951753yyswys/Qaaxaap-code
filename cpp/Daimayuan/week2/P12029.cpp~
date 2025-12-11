@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	void work()
+	{
+		int n,q;
+		cin>>n>>q;
+		vector<int> a(n+1),tic(n+1);
+		for(int i=1;i<=n;i++) cin>>a[i],tic[a[i]]++,buc[a[i]].insert(i);
+		vector<set<int>> buc(n+1);
+		set<int> alm;
+		set
+		for(int i=1;i<=n;i++) if(tic[i]) alm.insert(i);
+		{
+			auto i=alm.end();
+
+		}
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+

@@ -1,0 +1,83 @@
+#include<bits/stdc++.h>
+using namespace std;
+int son[100010],dep[100010],head[200020],cnt,top[200020],siz[200020],fa[100010],dfn[100010],rnf[100010],zt[100010],num;
+set<int> bl[100001];
+struct edge
+{
+	int to,nxt;
+} e[200010];
+inline void add(int u,int v)
+{
+	e[++cnt]={v,head[u]};
+	head[u]=cnt;
+}
+void dfs1(int u,int f)
+{
+	int mx=-1;
+	siz[u]=0;
+	fa[u]=f;
+	dep[u]=dep[f]+1;
+	son[u]=-1;
+	for(int i=head[u];i;i=e[i].nxt)
+	{
+		int v=e[i].to;
+		if(v!=f) 
+		{
+			dfs1(v,u);
+			siz[u]+=siz[v]+1;
+			if(mx<siz[v]) mx=siz[v],son[u]=v;
+		}
+	}
+}
+void dfs2(int u,int t)
+{
+	num++;
+	dfn[u]=num;
+	rnf[num]=u;
+	top[u]=t;
+	if(son[u]==-1) return;
+	dfs2(son[u],t);
+	for(int i=head[u];i;i=e[i].nxt)
+	{
+		int v=e[i].to;
+		if(fa[u]!=v&&v!=son[u]) dfs2(v,v);
+	}
+}
+void update(int x)
+{
+	zt[x]^=1;
+	if(zt[x]) bl[top[x]].insert(dfn[x]);
+	else bl[top[x]].erase(dfn[x]);
+}
+int query(int x)
+{
+	int ans=-1;
+	while(x)
+	{
+		if(bl[top[x]].size()) if(*bl[top[x]].begin()<=dfn[x]) ans=rnf[*bl[top[x]].begin()];
+		x=fa[top[x]];
+	}
+	return ans;
+}
+int main()
+{
+	int n,q;
+	cin>>n>>q;
+	for(int i=1;i<n;i++) 
+	{
+		int u,v;
+		cin>>u>>v;
+		add(u,v);
+		add(v,u);
+	}
+	dfs1(1,0);
+	dfs2(1,1);
+	for(int i=1;i<=q;i++)
+	{
+		int opt,x;
+		cin>>opt>>x;
+		if(opt==0) update(x);
+		else cout<<query(x)<<endl;
+	}
+	return 0;
+}

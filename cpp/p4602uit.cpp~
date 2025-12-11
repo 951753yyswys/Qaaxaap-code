@@ -1,0 +1,110 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+const int N=1e5+5;
+
+struct tree
+{
+    int l,r,ls,rs;
+    ll sl,sp;
+}t[N<<5];
+
+int n,m,mx,tot;
+int d[N],p[N],l[N],rt[N];
+set<pair<int,int>> v[N];
+
+int new_node(int u)
+{
+    tot++;
+    t[tot]=t[u];
+    return tot;
+}
+
+int build(int u,int l,int r)
+{
+    u=++tot;
+    t[u].l=l;
+    t[u].r=r;
+    if(l==r)
+        return u;
+    int mid=(l+r)>>1;
+    t[u].ls=build(t[u].ls,l,mid);
+    t[u].rs=build(t[u].rs,mid+1,r);
+    return u;
+}
+
+int update(int u,int k,int x)
+{
+    u=new_node(u);
+    t[u].sl+=x;
+    t[u].sp+=1ll*k*x;
+    if(t[u].l==t[u].r)
+        return u;
+    int mid=(t[u].l+t[u].r)>>1;
+    if(k<=mid)
+        t[u].ls=update(t[u].ls,k,x);
+    else
+        t[u].rs=update(t[u].rs,k,x);
+    return u;
+}
+
+ll query(int u,ll k)
+{
+    if(k==0)
+        return 0;
+    if(t[u].l==t[u].r)
+        return 1ll*t[u].l*k;
+    if(t[t[u].ls].sl>=k)
+        return query(t[u].ls,k);
+    return t[t[u].ls].sp+query(t[u].rs,k-t[t[u].ls].sl);
+}
+
+bool check(int x,ll G,ll L)
+{
+    // printf("美味值为%d:\n",x);
+    if(t[rt[x]].sl<L)
+        return 0;
+    if(query(rt[x],L)<=G)
+        return 1;
+    return 0;
+}
+
+int main()
+{
+    scanf("%d%d",&n,&m);
+    for(int i=1;i<=n;i++)
+    {
+        scanf("%d%d%d",&d[i],&p[i],&l[i]);
+        v[d[i]].insert({d[i],i});
+        mx=max(mx,d[i]);
+    }
+    rt[mx+1]=build(rt[mx+1],1,mx);
+    for(int i=mx;i>=1;i--)
+    {
+        rt[i]=rt[i+1];
+        for(auto j:v[i])
+            rt[i]=update(rt[i],p[j.second],l[j.second]);
+    }
+    ll G,L;
+    for(int i=1;i<=m;i++)
+    {
+        scanf("%lld%lld",&G,&L);
+        int l=1,r=mx,ans=-1;
+        while(l<=r)
+        {
+            int mid=(l+r)>>1;
+            if(check(mid,G,L))
+            {
+                l=mid+1;
+                ans=mid;
+            }
+            else
+            {
+                r=mid-1;
+            }
+        }
+        printf("%d\n",ans);
+    }
+    return 0;
+}

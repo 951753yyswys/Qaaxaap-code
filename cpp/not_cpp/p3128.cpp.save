@@ -1,0 +1,88 @@
+#include<bits/stdc++.h>
+#define itn int
+#define int long long 
+using namespace std;
+struct edge
+{
+    int to,nxt;
+} e[1000010];
+itn head[1001010],cnt,f[100010][200],dep[1010010],sum[1000100],vis[1000100];
+inline void add(int u,int v)
+{
+    cnt++;
+    e[cnt].to=v;
+    e[cnt].nxt=head[u];
+    head[u]=cnt;
+}
+void pre_dfs(itn ro,int fa)
+{
+    vis[ro]=1;
+    //cout<<"RO:"<<ro<<"FA:"<<fa<<endl;
+    f[ro][0]=fa;
+    for(itn i=1;i<=20;i++) f[ro][i]=f[f[ro][i-1]][i-1];
+    dep[ro]=dep[fa]+1;
+    for(int i=head[ro];i;i=e[i].nxt)
+    {
+        itn v=e[i].to;
+        if(!vis[v]) pre_dfs(v,ro);
+    }
+}
+void dfs(int ro)
+{
+    vis[ro]=1;
+    for(int i=head[ro];i;i=e[i].nxt)
+    {
+        itn v=e[i].to;
+        if(vis[v]) continue;
+        dfs(v);
+        sum[ro]+=sum[v];
+    }
+    //cout<<"RO: "<<ro<<" SUM:"<<sum[ro]<<endl;
+}
+itn lca(int x,itn y)
+{
+    if(dep[x]<dep[y]) swap(x,y);
+    for(int i=20;i>=0;i--) if(dep[f[x][i]]>=dep[y]) x=f[x][i];
+    if(x==y) return x;
+    for(int i=20;i>=0;i--) if(f[x][i]!=f[y][i]) x=f[x][i],y=f[y][i];
+    return f[x][0];
+}
+signed main()
+{
+    //freopen("p3168.in","r",stdin);
+    itn n,k;
+    cin>>n>>k;
+    for(itn i=1;i<n;i++)
+    {
+        itn x,y;
+        cin>>x>>y;
+        add(x,y);
+        add(y,x);
+    }
+    pre_dfs(1,0);
+    //cout<<"DEP: ";
+    //for(itn i=1;i<=n;i++) cout<<dep[i]<<" ";
+    //cout<<endl;
+    // for(int i=1;i<=n;i++) 
+    // {
+    //     for(int j=0;j<=5;j++) cout<<f[i][j]<<' ';
+    //     cout<<endl;
+    // }
+    memset(vis,0,sizeof(vis));
+    for(int i=1;i<=k;i++)
+    {
+        int s,t;
+        cin>>s>>t;
+        int fa=lca(s,t);
+        sum[s]++;
+        sum[t]++;
+        sum[fa]--;
+        sum[f[fa][0]]--;
+        //out<<"S: "<<s<<" T: "<<t<<" LCA: "<<fa<<endl;
+    }
+    dfs(1);
+    int ans=0;
+    for(itn i=1;i<=n;i++) ans=max(ans,sum[i]);
+    cout<<ans;
+    return 0;
+}

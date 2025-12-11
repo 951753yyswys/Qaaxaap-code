@@ -1,0 +1,72 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	int qp(int d,int z)
+	{
+		int t=1;
+		while(z)
+		{
+			if(z&1) t=t*d%mod;
+			d=d*d%mod;
+			z>>=1;
+		}
+		return t;
+	}
+	int inv(int x)
+	{
+		return qp(x,mod-2);
+	}
+	void work()
+	{
+		int n,q;
+		cin>>n>>q;
+		int cnt0=0,ans=1;
+		string s;
+		cin>>s;
+		s='+'+s;
+		s='+'+s;
+		for(int i=n;i>=2;i--) 
+		{
+			if(s[i]=='<'||s[i]=='>') continue;
+			int zq=i-2;
+			if(zq==0) cnt0++;
+			else ans=ans*zq%mod;
+		}
+		if(!cnt0) cout<<ans<<endl;
+		else cout<<0<<endl;
+		while(q--)
+		{
+			int i;
+			char c;
+			cin>>i>>c;
+			i++;
+			if(s[i]=='?')
+			{
+				int zq=i-2;
+				if(zq==0) cnt0--;
+				else ans=ans*inv(zq)%mod;
+			}
+			if(c=='<'||c=='>')
+			{
+				if(cnt0) cout<<0<<endl;
+				else cout<<ans<<endl;
+				continue;
+			}
+			int zq=i-2;
+			if(zq==0) cnt0++;
+			else ans=ans*zq%mod;
+			if(cnt0) cout<<0<<endl;
+			else cout<<ans<<endl;
+		}
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+

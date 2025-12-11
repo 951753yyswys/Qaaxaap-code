@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct edge
+{
+	int to,nxt;
+} e[200200];
+int head[200200],cnt,vis[100100],ans,n,m;
+inline void add(int u,int v)
+{
+	cnt++;
+	e[cnt].to=v;
+	e[cnt].nxt=head[u];
+	head[u]=cnt;
+}
+void dfs(int ro)
+{
+	for(int i=head[u];i;i=e[i].nxt) 
+	{
+		int v=e[i].to;
+		if(vis[v]==0) 
+		{
+			vis[v]=ro,dfs(ro+1);
+			return;
+		}
+		else if(vis[v]<ro) 
+		{
+			dfs(vis[v]),vis[v]=ro;
+			return;
+		}
+	}
+	ans--;
+	return;
+}
+int main()
+{
+	cin>>n>>m;
+	ans=n;
+	for(int i=1;i<=n;i++)
+	{
+		int t;
+		cin>>t;
+		for(int j=1;j<=t;j++) 
+		{
+			int l;
+			cin>>l;
+			add(i,n+l);
+		}
+	}
+	dfs(1);
+	cout<<ans;
+	return 0;
+} 

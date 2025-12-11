@@ -1,0 +1,74 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct edge
+{
+	int to,nxt,w;
+} e[1000100];
+int cnt,head[1000010],dis1[1000010],dis2[1001000],vis[1000100],ans;
+inline void add(int u,int v,int w)
+{
+	cnt++;
+	e[cnt].to=v;
+	e[cnt].nxt=head[u];
+	e[cnt].w=w;
+	head[u]=cnt;
+}
+int main()
+{
+	int n,r,mine=0x7fffffff;
+	cin>>n>>r;
+	for(int i=1;i<=r;i++) 
+	{
+		int u,v,w;
+		cin>>u>>v>>w;
+		add(u,v,w);
+		add(v,u,w);
+		mine=min(mine,w);
+	}
+	memset(dis1,0x3f,sizeof(dis1));
+	memset(dis2,0x3f,sizeof(dis2));
+	priority_queue<pair<int,int>> q;
+	dis1[1]=0;
+	dis2[n]=0;
+	q.push({0,1});
+	while(!q.empty())
+	{
+		int ro=q.top().second;
+		q.pop();
+		if(vis[ro]) continue;
+		vis[ro]=1;
+		for(int i=head[ro];i;i=e[i].nxt)
+		{
+			int v=e[i].to;
+			dis1[v]=min(dis1[v],dis1[ro]+e[i].w);
+			q.push({dis1[v],v});
+		}
+	}
+	memset(vis,0,sizeof(vis));
+	q.push({0,n});
+	while(!q.empty())
+	{
+		int ro=q.top().second;
+		q.pop();
+		if(vis[ro]) continue;
+		vis[ro]=1;
+		for(int i=head[ro];i;i=e[i].nxt)
+		{
+			int v=e[i].to;
+			dis2[v]=min(dis2[v],dis2[ro]+e[i].w);
+			q.push({dis2[v],v});
+		}
+	}
+	ans=mine*2+dis1[n];
+	for(int i=1;i<=n;i++) 
+	{
+		for(int j=head[i];j;j=e[j].nxt)
+		{
+			int v=e[j].to,w=e[j].w;
+			if(dis1[v]!=dis1[i]+w&&dis1[i]!=dis1[v]+w)
+				ans=min({ans,dis1[v]+dis2[i]+w,dis1[i]+dis2[v]+w});
+		}
+	}
+	cout<<ans;
+	return 0;
+}

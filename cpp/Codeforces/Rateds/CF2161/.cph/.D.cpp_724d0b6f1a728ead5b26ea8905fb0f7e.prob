@@ -1,0 +1,1 @@
+{"name":"Local: D","url":"d:\\code\\cpp\\Codeforces\\Rateds\\CF2161\\D.cpp","tests":[{"id":1761844297069,"input":"6\n1\n1\n5\n1 2 3 4 5\n5\n5 4 3 2 1\n5\n5 5 5 4 4\n7\n1 7 1 2 5 7 1\n6\n1 2 5 6 5 5\n","output":"0\n2\n0\n0\n1\n2\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\code\\cpp\\Codeforces\\Rateds\\CF2161\\D.cpp","group":"local","local":true}

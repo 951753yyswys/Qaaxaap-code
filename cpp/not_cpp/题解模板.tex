@@ -1,0 +1,286 @@
+\documentclass[UTF8,a4paper]{ctexart}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}     
+\usepackage{xeCJKfntef}                     
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{mathrsfs}
+\usepackage{framed}
+\usepackage[colorlinks,linkcolor=blue]{hyperref} 
+\newcommand\filename[1]{\emph{\textbf{#1}}}
+\newcommand\udot[1]{\textbf{\color{black}\CJKunderdot{\color{black}#1}}} % 第一个 color 调整加粗字体下着重号的颜色
+\newcommand\newprob[2]{
+	\newpage
+	\pagestyle{fancy}
+	\lhead{CyreneOI Round2 Div2.5} \rhead{#1（#2）}
+	\cfoot{第 \thepage 页 \qquad 共 \pageref{LastPage} 页}
+	\phantomsection
+	\addcontentsline{toc}{section}{#1（#2）}
+	\begin{center}
+		\LARGE
+		\textbf{#1（}#2\textbf{）}
+	\end{center}
+	\large
+	%
+	\textbf{}%【题解】}
+\phantomsection
+\addcontentsline{toc}{subsection}{}%【题解】}
+}
+\newcommand\para[1]{
+$ $ \\ 
+\textbf{【#1】}
+\phantomsection
+\addcontentsline{toc}{subsection}{【#1】}
+}
+\newcommand\sample[2]{
+$ $ \\ 
+\textbf{【样例} #1\textbf{#2】}
+\phantomsection
+\addcontentsline{toc}{subsection}{【样例 #1 #2】}
+}
+\lstset{
+basicstyle={      
+\color{black}
+\fontspec{YaHei Consolas Hybrid}
+},
+keywordstyle={
+\color{blue}
+\fontspec{YaHei Consolas Hybrid}
+},
+numberstyle={
+\color{gray}
+\texttt
+},
+rulecolor=\color{blue},
+numbers=left,                               
+frame=single,                            
+% frameround=tttt,
+morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{YaHei Consolas Hybrid}
+\geometry{left=2.52cm,right=2.52cm,top=2.5cm,bottom=2.5cm}
+\begin{document}
+\pagestyle{fancy}
+\lhead{CyreneOI Round2 Div2.5} \rhead{}
+\cfoot{第 \thepage 页 \qquad 共 \pageref{LastPage} \color{black} 页}
+\thispagestyle{empty}
+\addcontentsline{toc}{section}{注意事项}
+\begin{center}
+\Huge
+\textbf{CyreneOI Round2 Div2.5}
+\\
+\Huge 
+MSANPU OI Contest
+\\
+\huge
+\textit{$\mathrm{Qaaxaap}$}
+\\
+\Large
+\textbf{题解}
+\\
+\end{center}
+\small
+\begin{center}
+\begin{tabular}{|p{3cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|}
+	\hline
+	题目名称 & Tribios &SkeMma720 & EpieiKeia216&Hyacinthia & NeiKos496 &PhiLia093\\
+	\hline
+	题目类型 & 传统型 & 传统型 & 传统型 & 传统型&传统型&传统型 \\
+	\hline
+	目录 & \texttt{Tribios} & \texttt{Anaxagoras} & \texttt{Castorice} & \texttt{Hyacinthia} &\texttt{Phainon}&\texttt{Cyrene}\\
+	\hline
+	可执行文件名 & \texttt{Tribios} & \texttt{Anaxagoras} & \texttt{Castorice} & \texttt{Hyacinthia} &\texttt{Phainon}&\texttt{Cyrene}\\
+	\hline
+	输入文件名(.in) & \texttt{Tribios} & \texttt{Anaxagoras} & \texttt{Castorice} & \texttt{Hyacinthia} &\texttt{Phainon}&\texttt{Cyrene}\\
+	\hline
+	输出文件名(.out) & \texttt{Tribios} & \texttt{Anaxagoras} & \texttt{Castorice} & \texttt{Hyacinthia} &\texttt{Phainon}&\texttt{Cyrene}\\
+	\hline
+	每个测试点时限 & 1.0 秒 & 1.0 秒 & 1.0 秒 & 2.0 秒 &1.0秒&1.0秒\\
+	\hline
+	内存限制 & 256 MiB & 256 MiB & 256 MiB & 256 MiB&256MiB&256MiB \\
+	\hline
+	测试点数目 & 10 & 10 & 20 & 20&10&10 \\
+	\hline
+	测试点是否等分 & 是 & 是 & 是 & 是 &是&是\\
+	\hline
+	是否使用子任务 &否&是&否&是&是&否\\
+	\hline
+\end{tabular}
+\end{center}
+\large
+提交源程序文件名(.cpp)
+\small
+\begin{center}
+\begin{tabular}{|p{3cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|}
+	\hline
+	对于 C++ 语言 & \texttt{Tribios} & \texttt{Anaxagoras} & \texttt{Castorice} & \texttt{Hyacinthia} &\texttt{Phainon}&\texttt{Cyrene}\\
+	\hline
+\end{tabular}
+\end{center}
+\large
+编译选项
+\small
+\begin{center}
+\begin{tabular}{|p{3cm}|p{12.4cm}<\centering|}
+	\hline
+	对于 C++ 语言 & \texttt{-O2 -std=c++14 -static } \\
+	\hline
+\end{tabular}
+\end{center}
+\large
+\udot{注意事项（请仔细阅读）} 
+\\
+\indent
+1. 本场比赛为阶段学习评估，总体难度较小，与 Codeforces-Div2.5 难度相近。\par
+2. 由于评测机性能原因，评测时题目时间限制可能会进行调整。\par
+3. 时间限制、空间限制分别不小于标准程序运行时间和内存使用的 1.5 倍、1 倍。\par
+4. 本场比赛仅支持 C++14 语言。\par
+5. \udot{不保证难度有序。} \par
+6. 本校模拟赛题不得外传，包括但不限于：私自拷题，在任何网站记录题目信息（包括洛谷非公开云剪贴板，非公开题目等），向在线 AI 询问题目，或任何可能造成其他人员获取题目的操作。\par
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newprob{星槎}{boat.cpp} \indent
+更好的观看体验，参见 \href{https://www.luogu.com.cn/article/oickfpoy}{我的洛谷题解}。\par
+\subsection*{题意}
+给定一棵无根树，有 $n$ 个节点，现有一种操作：
+1. 选择两个节点 $(s,t)$。
+2. 把 $s$ 到 $t$ 的简单路径上的每一个节点，断掉原来位于这条链上的边，直接连到 $s$ 节点上
+
+问最少多少次操作才能让 $n-1$ 个节点全部连到另一个节点上
+\subsection*{思路}
+我们注意到这样一个性质：
+
+对于一个选出的根节点 $rt$，其叶子节点中深度不为 $1$（就是不直接连接 $rt$ 的叶子节点）都需要至少一次操作来将其连到 $rt$ 上，同时路径上的其它点也一起连好了。
+
+然而，一次操作只能改变一个叶子节点，因为我们必须设定 $s$
+为 $rt$，否则只会更劣。
+
+这说明什么？
+
+这说明我们只需要操心叶子节点。
+
+更进一步，操作次数就是需要动的叶子节点个数，也就是不直连 $rt$ 的叶子节点个数。
+
+问题来了，对于每一个 $rt$ ，我们去求这个东西，是 $O(n^2)$ 的，怎么办？
+
+正难则反，我们只需要先从任意一点出发，求总叶子节点个数，然后对于每一个 $rt$，我们只需要算
+$$\text{该节点为根的最少操作数}=\text{总叶子节点个数}-\text{直连的叶子结点个数}$$
+就可以了。
+
+所以我们只要对每一个节点算出答案，再求 $\min$ 就可以了。
+\subsection*{复杂度}
+\subsubsection*{时间复杂度}
+我们考虑预处理出总叶子节点个数，以及每一个节点直连叶子节点个数，这是 $O(n)$。
+
+对于每一个节点，算该节点为根答案所需的两个参数我们已经计算好，就是 $O(1)$。
+
+总共 $n$ 个节点，每个节点 $O(1)$，合起来就是 $O(n)$。
+\subsubsection*{空间复杂度}
+我们的信息都是对于每一个节点存的，有 $n$ 个节点，所以是 $O(n)$。
+\subsection*{实现}
+通过分开 dfs 来进行预处理和计算每一个节点的答案。
+
+在预处理 dfs 完了之后，需要判一下目前作根的点是否只有一个子节点，如果是，总叶子节点个数要 $+1$。
+
+注意，特判 $n=2$ 的情况，因为两个点都会被计算进总叶子节点，但是只能减去一个。
+
+另外，减少时间消耗小技巧：在判断是否为叶子节点时，不需要算完有多少子节点，大于某个值直接返回就行了，因为不是叶子，这也确保了这个操作是 $O(1)$ 的。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newprob{SkeMma720}{Anaxagoras} \\ \indent
+定义 $len$ 为访问长度，即 $r-l+1$ ，
+考虑到异或操作在每个二进制位之间互不影响，所以每一位分别讨论贡献，这里给出公式
+$$\text{贡献}_k = 2^k \times 2^{\text{len}-1}$$
+
+证明：设区间中有 $c$ 个元素第 $k$ 位上为 $1$ ，其余 $len-c$ 个元素为第 $k$ 位 $0$
+
+选择奇数个为 $1$ 的元素，则方式总数为 $$\sum_{t \text{为奇数}} \binom{c}{t} = 2^{c-1}$$ 
+
+
+下证 $\sum_{t \text{为奇数}} \binom{c}{t} = 2^{c-1}$
+
+我们考虑二项式定理展开式，则有 $$(1 + 1)^c = \sum_{t=0}^c \binom{c}{t} = 2^c$$
+$$(1 - 1)^c = \sum_{t=0}^c \binom{c}{t} (-1)^t = 0 \quad (\text{当 } c \geq 1)$$
+
+联立两式，即得 $$\begin{aligned}
+(1+1)^c + (1-1)^c &= 2 \sum_{t \text{为偶数}} \binom{c}{t}, \\
+(1+1)^c - (1-1)^c &= 2 \sum_{t \text{为奇数}} \binom{c}{t}.
+\end{aligned}$$
+
+化简即得 $\sum_{t \text{为奇数}} \binom{c}{t} = 2^{c-1}$
+
+再任意选择 $0$ ，有 $2^{len-c}$ 种选法
+
+故第 $i$ 位的贡献为$$2^{c-1} \times 2^{\text{len}-c} = 2^{\text{len}-1}$$
+
+但是最终我们要转换成 $10$ 进制，故需要 $\times2^k$ ，即得要证的公式 $Q.E.D$
+
+注意到我们刚刚的公式在 $c \geq 1$的情况下才成立，所以当该位全是0的情况下该位贡献显然为 $0$
+
+综上，$\text{答案} = \sum_{k=0}^{29} \left( [\text{第 }k\text{ 位存在 1}] \times 2^{k} \times 2^{\text{len}-1} \right) \mod (10^9+7)$
+
+我们只需要使用30个带懒标记支持加乘操作的线段树来求和判断每一个二进制位是否存在 $1$ 即可，异或 $0$ 即为不变，异或 $1$ 即为乘 $-1$ 再加 $1$ ，如此实现即可，时间复杂度$O(M \log n)$,常数稍大
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newprob{EpieiKeia216}{Castorice}\\ \indent
+形式化题面：给出序列 $a_1,a_2,\dots,a_n$，从中选出 $m$ 个元素 $a_{j1},a_{j2},\dots,a_{jm}$，对于每个被选出来的元素 $a_{jk}$，其可以提供的贡献为 $a_{j1},a_{j2},\dots,a_{jm}$ 中与 $a_{jk}$ 的值相等的元素数量\par
+如果一个数字出现了 $t$ 次，其贡献就是 $t^2$。\par
+我们可以转化一下，如果一个数 $a$ 被选了 $x$ 次，其贡献为 $x^2$。如果再选一次 $a$，贡献为 $(x+1)^2$，增加了 $2x+1$。
+因此，我们应该优先选择出现次数多的数，按照出现次数从大到小贪心即可。 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newprob{Hyacinthia}{Hyacinthia} \\ \indent
+虽然这题长得有点像二分，但是好写的做法是 dp。
+
+记 \( \mathit{sum}_u \) 表示 \( u \) 子树内人数之和，\( \mathit{leaf}_u \) 表示 \( u \) 子树内叶子节点数量，那么考虑最理想的情况——均匀分配给每个叶子，那么答案至少是 \[ \left\lceil \frac{\mathit{sum}_u}{\mathit{leaf}_u} \right\rceil \]。
+
+那什么情况下不是理想情况呢？记 \( f_v \) 表示 \( v \) 子树内分配后人数最多的叶子节点的最少数量，那么当 \( f_v > \left\lceil \frac{\mathit{sum}_u}{\mathit{leaf}_u} \right\rceil \) 时无法均匀分配。否则，\( f_u = \left\lceil \frac{\mathit{sum}_u}{\mathit{leaf}_u} \right\rceil \)
+
+\[
+f_u = \max \left\{ \max_{v} f_v,  \left\lceil \frac{\mathit{sum}_u}{\mathit{leaf}_u} \right\rceil \right\}
+\]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newprob{NeiKos496}{Phainon} \\ \indent
+形式化题面：
+
+给定一个 $n$,对于每个不超过 $n$ 的正整数 $i$，用 $n$ 除以 $i$，得到余数记为 $n_1$。用 $n$ 除以 $n_1$，得到余数记为 $n_2$ ……如此操作，直到出现一个 $n_ m = 0$ 为止，此时记 $F_i = m$。
+
+你的任务是对于给定的 $n$，以及 $T$ 组 $L$, $R$，查询 $[L, R]$ 区间中的 $F_k (L \leq k \leq R)$ 最大值。
+
+
+这道题的$f_{k}$的生成方式是不断对原数取余，不难想到递推
+递推公式是：$f_{k}=f_{a\%k}+1$,$O(n)$即可
+接下来，我们要查询$(l,r)$区间中$f_{k}$的最大值，不难想到使用$ST$表
+
+于是这道题就这么做完了,时间复杂度 $O(n+t\log n)$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newprob{PhiLia093}{Cyrene} \\ \indent
+形式化题面：
+
+给定一个长为 $n$ 的数字序列 $a_i$，其中 $1\le a_i\le n$。\par
+取了 $m+1$ 个前缀，第 $i$ 个前缀是 $1\sim p_i$，其中 $p_{m+1} =n$。\par
+设 $z_i$ 为数字 $i$ 的出现次数，\par
+求 $(z_1\times 1) \oplus (z_2\times 2) \oplus \dots \oplus (z_n\times n)$。\par
+
+正解：
+
+考虑维护出每个位置的出现次数，那么一个前缀 \( p_i \) 相当于给位置 \( 1 \sim p_i \) 加 1。  
+这东西只需要维护差分数组，最后再前缀和一下就可以了。  
+时间复杂度 \( O(n + m) \)，期望得分 \text{100pts}。
+\newprob{写在最后}{总结} \\ \indent
+此次题目难度估计约为蓝、蓝、橙、绿、绿、橙。\par
+这告诉我们在比赛时\udot{先读题估计题目难度再做题}。\par
+另外，T1、T2、T5都是我之前出过并且讲过的题，$300$ 分里至少应该拿到 $100$ 分，拿不到的应该好好反思。\par
+\Huge
+\begin{center}
+\textbf{谢谢倾听}
+\end{center}
+\end{document}

@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sci_qudの个人主页</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    :root {
+      --primary-color: #6c5ce7;
+      --secondary-color: #a29bfe;
+      --accent-color: #fd79a8;
+      --dark-bg: rgba(20, 20, 30, 0.9);
+      --light-bg: rgba(255, 255, 255, 0.12);
+      --text-primary: rgba(255, 255, 255, 0.95);
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --border-color: rgba(255, 255, 255, 0.18);
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --glass-effect: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    body {
+      background: url('https://image.wsq127.top/file/6w0j3e2t.png') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      color: var(--text-primary);
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      backdrop-filter: blur(8px);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* 左侧面板 */
+    .left-panel {
+      padding: 2.5rem 1.8rem;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(15, 15, 25, 0.75);
+      backdrop-filter: blur(12px);
+      border-right: 1px solid var(--border-color);
+      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+    }
+    
+    /* 右侧内容区域 */
+    .right-content {
+      background: var(--dark-bg);
+      backdrop-filter: blur(20px);
+      min-height: 100vh;
+      padding: 3.5rem;
+      overflow-y: auto;
+    }
+    
+    /* 头像样式 */
+    .avatar-container {
+      position: relative;
+      margin-bottom: 1.8rem;
+      width: 160px;
+      height: 160px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--border-color);
+      transition: var(--transition);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .avatar:hover {
+      transform: scale(1.08) rotate(5deg);
+      border-color: var(--accent-color);
+      box-shadow: 0 12px 30px rgba(253, 121, 168, 0.4);
+    }
+    
+    .avatar-container::before {
+      content: '';
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: var(--glass-effect);
+      border: 2px solid rgba(162, 155, 254, 0.3);
+      animation: pulse 4s ease-in-out infinite;
+      z-index: 1;
+    }
+    
+    .avatar-container::after {
+      content: '';
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 2px dashed var(--secondary-color);
+      opacity: 0.3;
+      transition: var(--transition);
+      pointer-events: none;
+      animation: rotate 20s linear infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 0.5; }
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    /* 个人信息文字 */
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 10px rgba(108, 92, 231, 0.3);
+    }
+    
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: 2.2rem;
+      text-align: center;
+      line-height: 1.6;
+      max-width: 240px;
+      padding: 1rem;
+      border-radius: 12px;
+      background: var(--light-bg);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-color);
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.05);
+    }
+    
+    /* 社交链接 */
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      width: 100%;
+      max-width: 240px;
+      margin-top: 1.2rem;
+    }
+    
+    .social-item {
+      display: flex;
+      align-items: center;
+      padding: 0.9rem 1.3rem;
+      border-radius: 10px;
+      transition: var(--transition);
+      color: var(--text-secondary);
+      text-decoration: none;
+      background: var(--light-bg);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(108, 92, 231, 0.2), transparent);
+      transition: all 0.6s ease;
+    }
+    
+    .social-item:hover {
+      background: rgba(108, 92, 231, 0.25);
+      color: #fff;
+      transform: translateX(8px);
+      border-color: var(--primary-color);
+      box-shadow: 0 8px 20px rgba(108, 92, 231, 0.25);
+    }
+    
+    .social-item:hover::before {
+      left: 100%;
+    }
+    
+    .social-item i {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .social-item:hover i {
+      color: var(--accent-color);
+      transform: scale(1.2);
+    }
+    
+    /* 一言和时间区域 */
+    .hitokoto-clock {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      margin-bottom: 3.5rem;
+      gap: 2.5rem;
+    }
+    
+    .hitokoto-container {
+      flex: 1;
+      background: var(--light-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 2rem;
+      border-left: 5px solid var(--primary-color);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hitokoto-container::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(108, 92, 231, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .hitokoto-container:hover {
+      background: rgba(108, 92, 231, 0.2);
+      transform: translateY(-5px);
+      box-shadow: var(--card-shadow);
+    }
+    
+    .hitokoto-container:hover::after {
+      opacity: 1;
+    }
+    
+    .hitokoto-text {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--text-primary);
+      margin-bottom: 0.8rem;
+      line-height: 1.7;
+      position: relative;
+      padding-left: 1.8rem;
+      font-weight: 300;
+    }
+    
+    .hitokoto-text::before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      top: -0.5rem;
+      font-size: 2.5rem;
+      color: var(--secondary-color);
+      opacity: 0.6;
+    }
+    
+    .hitokoto-from {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      text-align: right;
+      font-style: normal;
+      opacity: 0.8;
+    }
+    
+    .clock-container {
+      background: var(--light-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 2rem;
+      min-width: 220px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 5px solid var(--accent-color);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .clock-container::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(253, 121, 168, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .clock-container:hover {
+      background: rgba(253, 121, 168, 0.15);
+      transform: translateY(-5px);
+      box-shadow: var(--card-shadow);
+    }
+    
+    .clock-container:hover::after {
+      opacity: 1;
+    }
+    
+    .clock-time {
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-family: 'Courier New', monospace;
+      text-shadow: 0 0 10px rgba(253, 121, 168, 0.3);
+    }
+    
+    .clock-date {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      letter-spacing: 1.5px;
+      opacity: 0.9;
+    }
+    
+    /* 网站网格区域 */
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      position: relative;
+      padding-bottom: 1rem;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), transparent);
+      border-radius: 3px;
+    }
+    
+    .website-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    /* 友链区域 */
+    .friend-links {
+      margin-top: 4rem;
+    }
+    
+    .friend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    
+    /* 卡片通用样式 */
+    .card {
+      background: var(--light-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: var(--transition);
+      text-decoration: none;
+      color: white;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--card-shadow);
+    }
+    
+    .card:hover::before {
+      opacity: 1;
+    }
+    
+    .website-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 180px;
+    }
+    
+    .website-card:hover {
+      background: rgba(108, 92, 231, 0.2);
+      border-color: var(--primary-color);
+    }
+    
+    .website-card h3 {
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .website-card h3::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      margin-right: 12px;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 0 10px var(--accent-color);
+    }
+    
+    .website-card p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+    
+.friend-card {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  /* 移除固定宽度，或根据需要设置更合适的宽度 */
+  /* width: 500px; */
+  width: 450px;
+  margin: 0.5rem; /* 添加外边距以避免紧密贴合 */
+  box-sizing: border-box; /* 确保内边距和边框不会增加元素的总宽度 */
+}
+
+.friend-grid {
+  display: flex;
+  flex-wrap: wrap; /* 允许子元素换行 */
+  gap: 1rem; /* 设置子元素之间的间距 */
+}
+
+.friend-card:hover {
+  background: rgba(253, 121, 168, 0.15);
+  /* 假设 border-color 已在其他地方定义，这里不再重复 */
+  /* border-color: var(--accent-color); */
+}
+
+    
+    .friend-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      margin-right: 18px;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      border: 2px solid var(--border-color);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    
+    .friend-card:hover .friend-avatar {
+      transform: rotate(360deg);
+      border-color: var(--accent-color);
+      box-shadow: 0 0 15px rgba(253, 121, 168, 0.4);
+    }
+    
+    .friend-info {
+      flex: 1;
+      overflow: hidden;
+    }
+    
+    .friend-name {
+      font-size: 1.2rem;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+    
+    .friend-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      opacity: 0.8;
+    }
+    
+    /* 浮动装饰元素 */
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+      filter: blur(40px);
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .floating-1 {
+      width: 250px;
+      height: 250px;
+      background: var(--primary-color);
+      top: 10%;
+      left: 5%;
+      animation: float 18s ease-in-out infinite;
+    }
+    
+    .floating-2 {
+      width: 200px;
+      height: 200px;
+      background: var(--accent-color);
+      bottom: 15%;
+      right: 10%;
+      animation: float 15s ease-in-out infinite reverse;
+    }
+    
+    .floating-3 {
+      width: 180px;
+      height: 180px;
+      background: var(--secondary-color);
+      top: 60%;
+      left: 20%;
+      animation: float 12s ease-in-out infinite 2s;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(30px, 40px) rotate(10deg);
+      }
+      50% {
+        transform: translate(-20px, 30px) rotate(-5deg);
+      }
+      75% {
+        transform: translate(20px, -20px) rotate(5deg);
+      }
+    }
+    
+    /* 刷新图标样式 */
+    .refresh-icon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      opacity: 0;
+      transition: var(--transition);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,0.1);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    
+    .hitokoto-container:hover .refresh-icon {
+      opacity: 0.7;
+    }
+    
+    .hitokoto-container:active .refresh-icon {
+      transform: rotate(360deg);
+    }
+    
+    .refresh-icon:hover {
+      color: var(--accent-color);
+      background: rgba(255,255,255,0.15);
+      opacity: 1 !important;
+    }
+    
+    /* 加载动画样式 */
+    .loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      z-index: 2;
+    }
+    
+    .loading.active {
+      opacity: 1;
+    }
+    
+    .loading-spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      border-top-color: var(--primary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* 社交图标样式 */
+    .social-icon {
+      width: 22px;
+      height: 22px;
+      margin-right: 14px;
+      opacity: 0.8;
+      transition: var(--transition);
+      object-fit: contain;
+    }
+    
+    .social-item:hover .social-icon {
+      opacity: 1;
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 5px rgba(253, 121, 168, 0.5));
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 1200px) {
+      body {
+        grid-template-columns: 260px 1fr;
+      }
+      
+      .right-content {
+        padding: 3rem;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      body {
+        grid-template-columns: 240px 1fr;
+      }
+      
+      .right-content {
+        padding: 2.5rem;
+      }
+      
+      .website-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
+      
+      .friend-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      }
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        grid-template-columns: 1fr;
+      }
+      
+      .left-panel {
+        height: auto;
+        position: relative;
+        padding: 2.5rem 1.8rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      
+      .hitokoto-clock {
+        flex-direction: column;
+      }
+      
+      .website-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+      
+      .friend-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .right-content {
+        padding: 2rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .hitokoto-container,
+      .clock-container {
+        padding: 1.5rem;
+      }
+      
+      .hitokoto-text {
+        font-size: 1.1rem;
+      }
+      
+      .clock-time {
+        font-size: 1.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .right-content {
+        padding: 1.5rem;
+      }
+      
+      .website-grid,
+      .friend-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .avatar {
+        width: 130px;
+        height: 130px;
+      }
+      
+      .avatar-container {
+        width: 140px;
+        height: 140px;
+      }
+    }
+    
+    /* 滚动条样式 */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--primary-color), var(--accent-color));
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-color);
+    }
+    
+    /* 页面加载动画 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    body {
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    .left-panel {
+      animation: fadeIn 1s ease-out 0.2s both;
+    }
+    
+    .right-content > * {
+      animation: fadeIn 1s ease-out 0.4s both;
+    }
+    
+    /* 卡片悬停3D效果 */
+    .card-3d {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+    
+    .card-3d-inner {
+      transition: transform 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- 浮动装饰元素 -->
+  <div class="floating-element floating-1"></div>
+  <div class="floating-element floating-2"></div>
+  <div class="floating-element floating-3"></div>
+  
+  <!-- 左侧面板 -->
+  <div class="left-panel">
+    <div class="avatar-container">
+        <img src="https://blog.wsq127.top/img/avatar.png" alt="头像" class="avatar">
+    </div>
+    <h1>Sci_qud</h1>
+    <div class="subtitle">欢迎来到我的主页喵！</br>不想套 imsyy 大佬的模板所以从头写了这么一坨</div>
+    
+    <!-- 社交链接 -->
+    <div class="social-links">
+        <a href="https://res.abeim.cn/api/qq/?qq=3341659982" target="_blank" class="social-item">
+        <i class="fab fa-qq"></i>
+        <span>QQ</span>
+        </a>
+        <a href="https://t.me/wsq127" target="_blank" class="social-item">
+        <i class="fab fa-telegram"></i>
+        <span>Telegram</span>
+        </a>
+        <a href="mailto:admin@wsq127.top" class="social-item">
+        <i class="fas fa-envelope"></i>
+        <span>Email</span>
+        </a>
+        <a href="https://www.luogu.com.cn/user/743352" target="_blank" class="social-item">
+        <i class="fas fa-code"></i>
+        <span>洛谷</span>
+        </a>
+        <a href="https://github.com/WSQ0127" target="_blank" class="social-item">
+        <i class="fab fa-github"></i>
+        <span>GitHub</span>
+        </a>
+</div>
+  </div>
+  
+  <!-- 右侧内容区域 -->
+  <div class="right-content">
+    <!-- 一言和时间 -->
+    <div class="hitokoto-clock">
+        <div class="hitokoto-container card" id="hitokoto-card">
+            <i class="fas fa-sync-alt refresh-icon"></i>
+            <div class="loading" id="hitokoto-loading">
+              <div class="loading-spinner"></div>
+            </div>
+            <div class="hitokoto-text" id="hitokoto">正在加载一言...</div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+          </div>
+      
+      <div class="clock-container card">
+        <div class="clock-time" id="clock-time"></div>
+        <div class="clock-date" id="clock-date"></div>
+      </div>
+    </div>
+    
+    <!-- 网站链接区域 -->
+    <h2 class="section-title">我的网站</h2>
+    <div class="website-grid">
+      <a href="https://blog.wsq127.top" target="_blank" class="website-card card">
+        <h3>个人博客</h3>
+        <p>记录技术与生活</p>
+      </a>
+      <a href="https://image.wsq127.top" target="_blank" class="website-card card">
+        <h3>图床</h3>
+        <p>图片托管服务，支持多种图片格式</p>
+      </a>
+      <a href="https://web.wsq127.top/" target="_blank" class="website-card card">
+        <h3>资源导航</h3>
+        <p>实用资源合集</p>
+      </a>
+      <a href="https://wsq127.top/" target="_blank" class="website-card card">
+        <h3>占位</h3>
+        <p>占位</p>
+      </a>
+    </div>
+    
+    <!-- 友链区域 -->
+    <div class="friend-links">
+      <h2 class="section-title">好友</h2>
+      <div class="friend-grid">
+        <a href="https://qm.qq.com/q/34W5AAi000" target="_blank" class="friend-card card">
+          <img src="https://image.wsq127.top/file/7ywzhngk.png" class="friend-avatar">
+          <div class="friend-info">
+            <div class="friend-name">517Group</div>
+            <div class="friend-desc">欢迎加入 517Group OfficialⅠ喵！</div>
+          </div>
+        </a>
+        <a href="https://blog.517group.cn/" target="_blank" class="friend-card card">
+          <img src="https://blog.517group.cn/img/ChioriAvatar.jpg" class="friend-avatar">
+          <div class="friend-info">
+            <div class="friend-name">祝馀宫</div>
+            <div class="friend-desc">其状如韭而青华，食之不饥</div>
+          </div>
+        </a>
+        <a href="https://www.luogu.com.cn/user/700091" target="_blank" class="friend-card card">
+          <img src="https://cdn.luogu.com.cn/upload/usericon/700091.png" class="friend-avatar">
+          <div class="friend-info">
+            <div class="friend-name">Acheron_RBM</div>
+            <div class="friend-desc">Abandon hope, forever, you who enter.||Abstract</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 页面加载动画
+    document.addEventListener('DOMContentLoaded', () => {
+      // 添加卡片3D效果
+      const cards = document.querySelectorAll('.card-3d');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const angleX = (y - centerY) / 30;
+          const angleY = (centerX - x) / 30;
+          
+          card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.02)`;
+          card.style.boxShadow = `0 20px 40px rgba(0, 0, 0, 0.3)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+          card.style.boxShadow = 'var(--card-shadow)';
+        });
+      });
+    });
+    
+    // 时钟功能
+    function updateClock() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('zh-CN', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      });
+      
+      const dateStr = now.toLocaleDateString('zh-CN', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        weekday: 'short'
+      });
+      
+      document.getElementById('clock-time').textContent = timeStr;
+      document.getElementById('clock-date').textContent = dateStr;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 获取元素
+    const hitokotoCard = document.getElementById('hitokoto-card');
+    const hitokotoLoading = document.getElementById('hitokoto-loading');
+
+    // 获取一言函数
+    function fetchHitokoto() {
+    // 显示加载动画
+    hitokotoLoading.classList.add('active');
+    
+    // 临时隐藏内容
+    document.getElementById('hitokoto').style.opacity = '0';
+    document.getElementById('hitokoto-from').style.opacity = '0';
+    
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+        document.getElementById('hitokoto').textContent = data.hitokoto;
+        document.getElementById('hitokoto-from').textContent = '—— ' + (data.from || '未知');
+        })
+        .catch(() => {
+        document.getElementById('hitokoto').textContent = '获取一言失败';
+        document.getElementById('hitokoto-from').textContent = '';
+        })
+        .finally(() => {
+        // 隐藏加载动画
+        hitokotoLoading.classList.remove('active');
+        // 显示内容
+        document.getElementById('hitokoto').style.opacity = '1';
+        document.getElementById('hitokoto-from').style.opacity = '1';
+        });
+    }
+
+    // 页面加载完成后自动调用 fetchHitokoto
+    window.onload = function() {
+    fetchHitokoto();
+    };
+
+    // 点击卡片仍然可以刷新一言（保留原有功能）
+    hitokotoCard.addEventListener('click', fetchHitokoto);
+
+    // 社交图标悬停效果
+    const socialItems = document.querySelectorAll('.social-item');
+    socialItems.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        const icon = item.querySelector('i, .social-icon');
+        if (icon) {
+          icon.style.transform = 'scale(1.2)';
+          setTimeout(() => {
+            if (item.matches(':hover')) {
+              icon.style.transform = 'scale(1.1)';
+            }
+          }, 300);
+        }
+      });
+      
+      item.addEventListener('mouseleave', () => {
+        const icon = item.querySelector('i, .social-icon');
+        if (icon) {
+          icon.style.transform = '';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
+
+

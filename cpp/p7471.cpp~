@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		priority_queue<int> q;
+		int num0=0;
+		for(int i=1;i<=3;i++) 
+		{
+			int l;
+			cin>>l;
+			q.push(l);
+			if(l==0) num0++;
+		}
+		if(num0>=2) cout<<0<<endl;
+		if(num0==1)
+		{
+			int a=q.top();
+			q.pop();
+			int b=q.top();
+			if(a==b) cout<<1<<endl;
+			else cout<<2<<endl;
+		}
+		if(num0==0)
+		{
+			int a=q.top();q.pop();
+			int b=q.top();q.pop();
+			int c=q.top();q.pop();
+			if(a==b+c||b==c) cout<<2<<endl;
+			else cout<<3<<endl;
+		}
+	}
+	return 0;
+}

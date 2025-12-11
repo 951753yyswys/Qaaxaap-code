@@ -1,0 +1,112 @@
+#include<bits/stdc++.h>
+#define mod 39989
+#define mod1 1000000000
+#define double long double
+using namespace std;
+struct func
+{
+	double b,k;
+	int l,r;
+	double f(int x){return x*k+b;}
+	void init(int x1,int x2,int y1,int y2)
+	{
+		l=min(x1,x2),r=max(x1,x2);
+		if(x1==x2) k=0,b=max(y1,y2);
+		else
+		{
+			k=1.0*(y1-y2)/(x1-x2);
+			b=y1-k*x1;
+		}
+	}
+} p[1000100];
+struct tree
+{
+	int l,r,mx;
+} t[1000100];
+int cnt;
+int check(double x,double y)
+{
+	if(x-y>1e-8) return 1;
+	if(y-x>1e-8) return -1;
+	return 0;
+}
+void build(int ro,int l,int r)
+{
+	t[ro]={l,r,0};
+	if(l==r) return;
+	int mid=l+r>>1;
+	build(ro*2,l,mid);
+	build(ro*2+1,mid+1,r);
+	//cout<<"id:"<<ro<<" l:"<<l<<" r:"<<r<<endl;
+}
+void update(int ro,int v)
+{
+	int l=t[ro].l,r=t[ro].r;
+	int &u=t[ro].mx;
+	int mid=t[ro].l+t[ro].r>>1;
+	double um=p[u].f(mid),vm=p[v].f(mid);
+	bool ck=check(um,vm);
+	if(u==0) return void(u=v);
+	if(ck==-1||(!ck&&v<u)) swap(u,v);
+    double ul=p[u].f(l),ur=p[u].f(r),vl=p[v].f(l),vr=p[v].f(r);
+	bool ckl=check(ul,vl);
+	bool ckr=check(ur,vr);
+	if(ckl==-1||(!ckl&&v<u)) update(ro*2,v);
+	if(ckr==-1||(!ckr&&v<u)) update(ro*2+1,v);
+}
+void find(int ro,int l,int r,int v)
+{
+	if(t[ro].l>=l&&t[ro].r<=r) return void(update(ro,v));
+	if(t[ro*2].r>=l) find(ro*2,l,r,v);
+	if(t[ro*2+1].l<=r) find(ro*2+1,l,r,v);
+}
+pair<double,int> pmax(pair<double,int> x,pair<double,int> y)
+{
+	if(!x.second) return y;
+	if(!y.second) return x;
+	if(check(x.first,y.first)==1) return x;
+	if(check(y.first,x.first)==1) return y;
+	if(x.second<y.second) return x;
+	return y;
+}
+pair<double,int> query(int ro,int pl)
+{
+	pair<double,int> ans={p[t[ro].mx].f(pl),t[ro].mx};
+	if(t[ro].l==t[ro].r) return ans;
+	if(t[ro*2].r>=pl) return pmax(ans,query(ro*2,pl));
+	else return pmax(ans,query(ro*2+1,pl));
+}
+int main()
+{
+	int n;
+	cin>>n;
+	build(1,1,mod);
+	int las=0;
+	while(n--)
+	{
+		int opt;
+		cin>>opt;
+		if(opt==0)
+		{
+			int k;
+			cin>>k;
+			k=(k+las-1)%mod+1;
+			//cout<<k<<endl;
+			las=query(1,k).second;
+			cout<<las<<endl;
+		}
+		else
+		{
+			int zd[4];
+			for(int i=0;i<4;i++) cin>>zd[i];
+			for(int i=0;i<=2;i+=2) zd[i]=(zd[i]+las-1)%mod+1;
+			for(int i=1;i<=3;i+=2) zd[i]=(zd[i]+las-1)%mod1+1;
+			cnt++;
+			//for(int i=0;i<4;i++) cout<<zd[i]<<' ';
+			//cout<<endl;
+			p[cnt].init(zd[0],zd[2],zd[1],zd[3]);
+			find(1,min(zd[0],zd[2]),max(zd[0],zd[2]),cnt);
+		}
+	}
+	return 0;
+}

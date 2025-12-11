@@ -1,0 +1,441 @@
+\documentclass[UTF8,a4paper]{ctexart}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}     
+\usepackage{xeCJKfntef}                     
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{mathrsfs}
+\usepackage{framed}
+\usepackage[colorlinks,linkcolor=blue]{hyperref} 
+\newcommand\filename[1]{\emph{\textbf{#1}}}
+\newfontfamily{\consolas}{Consolas}
+\newcommand\udot[1]{\textbf{\color{black}\CJKunderdot{\color{black}#1}}} % 第一个 color 调整加粗字体下着重号的颜色
+\newcommand\newprob[2]{
+	\newpage
+	\pagestyle{fancy}
+	\lhead{{\consolas ▒▒▒▒}OI Round2 Div2.5} \rhead{#1（#2）}
+	\cfoot{第 \thepage 页 \qquad 共 \pageref{LastPage} 页}
+	\phantomsection
+	\addcontentsline{toc}{section}{#1（#2）}
+	\begin{center}
+		\LARGE
+		\textbf{#1（}#2\textbf{）}
+	\end{center}
+	\large
+	%
+	\textbf{【题目背景】}
+	\phantomsection
+	\addcontentsline{toc}{subsection}{【题目背景】}
+}
+\newcommand\para[1]{
+	$ $ \\ 
+	\textbf{【#1】}
+	\phantomsection
+	\addcontentsline{toc}{subsection}{【#1】}
+}
+\newcommand\sample[2]{
+	$ $ \\ 
+	\textbf{【样例} #1\textbf{#2】}
+	\phantomsection
+	\addcontentsline{toc}{subsection}{【样例 #1 #2】}
+}
+\lstset{
+	basicstyle={      
+		\color{black}
+		\fontspec{Consolas}
+	},
+	keywordstyle={
+		\color{blue}
+		\fontspec{Consolas}
+	},
+	numberstyle={
+		\color{gray}
+		\texttt
+	},
+	rulecolor=\color{blue},
+	numbers=left,                               
+	frame=single,                            
+	% frameround=tttt,
+	morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{Consolas}
+\geometry{left=2.52cm,right=2.52cm,top=2.5cm,bottom=2.5cm}
+\begin{document}
+	\pagestyle{fancy}
+	\lhead{{\consolas ▒▒▒▒}OI Round2 Div2.5} \rhead{}
+	\cfoot{第 \thepage 页 \qquad 共 \pageref{LastPage} \color{black} 页}
+	\thispagestyle{empty}
+	\addcontentsline{toc}{section}{注意事项}
+	\begin{center}
+		\Huge
+		\textbf{{\consolas ▒▒▒▒}OI Round2 Div2.5}
+		\\
+		\Huge 
+		{\consolas ▒▒▒▒▒} OI Contest
+		\\
+		\huge
+		\textit{\consolas ▒▒▒▒▒▒▒}
+		\\
+		\Large
+		\textbf{时间：}{\consolas ▒▒▒▒}\textbf{年}{\consolas ▒▒}\textbf{月}{\consolas ▒▒}\textbf{日} {\consolas ▒▒:▒▒} $\sim$ {\consolas ▒▒:▒▒}
+		\\
+	\end{center}
+	\large
+	\begin{center}
+		\begin{tabular}{|p{3.1cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+			\hline
+			题目名称 & 小木棍 & 献祭 & 染色体 & 线段树二分 \\
+			\hline
+			题目类型 & 传统型 & 传统型 & 传统型 & 传统型 \\
+			\hline
+			目录 & \texttt{polygon} & \texttt{xor} & \texttt{lx} & \texttt{segbs} \\
+			\hline
+			可执行文件名 & \texttt{polygon} & \texttt{xor} & \texttt{lx} & \texttt{segbs} \\
+			\hline
+			输入文件名 & \texttt{polygon.in} & \texttt{xor.in} & \texttt{lx.in} & \texttt{segbs.in} \\
+			\hline
+			输出文件名 & \texttt{polygon.out} & \texttt{xor.out} & \texttt{lx.out} & \texttt{segbs.out} \\
+			\hline
+			每个测试点时限 & 1.0 秒 & 1.0 秒 & 1.0 秒 & 2.0 秒 \\
+			\hline
+			内存限制 & 256 MiB & 256 MiB & 256 MiB & 256 MiB \\
+			\hline
+			预估{\consolas▒▒▒▒} & {\consolas ▒▒▒▒} & {\consolas ▒▒▒▒} & {\consolas ▒▒▒▒} & {\consolas ▒▒▒▒} \\
+			\hline
+			测试点数目 & 20 & 5 & 5 & 60 \\
+			\hline
+			测试点是否等分 & 是 & 是 & 是 & 是 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	提交源程序文件名
+	\begin{center}
+		\begin{tabular}{|p{3.1cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+			\hline
+			对于 C++ \  语言 & \texttt{ltm.cpp} & \texttt{xor.cpp} & \texttt{lx.cpp} & \texttt{segbs.cpp} \\
+			\hline
+		\end{tabular}
+	\end{center}
+	编译选项
+	\begin{center}
+		\begin{tabular}{|p{3.1cm}|p{11.2cm}<\centering|}
+			\hline
+			对于 C++ \ 语言 & \texttt{-O2 -std=c++14 -static -m32} \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\udot{注意事项（请仔细阅读）} 
+	\\
+	\indent
+	1. 本场比赛为阶段学习评估，总体难度较小，与 {\consolas ▒▒▒▒▒▒▒▒▒}-Div2.5 难度相近。\par
+	2. 由于评测机性能原因，评测时题目时间限制可能会进行调整。\par
+	3. 时间限制、空间限制分别不小于标准程序运行时间和内存使用的 1.1 倍、1.1 倍。\par
+	4. 本场比赛可支持 C++14 语言。\par
+	5. \udot{本场比赛不提供{\consolas ▒▒▒▒▒▒▒▒}。} \par
+	6. 本校模拟赛题不得外传，包括但不限于：私自拷题，在任何网站记录题目信息（包括洛谷非公开云剪贴板，非公开题目等），向在线 AI 询问题目，或{\consolas ▒▒▒▒▒▒▒▒▒▒▒▒▒▒}。\par
+	7. 题目背景为架空世界，请勿将现实中人物对号入座，否则 {\consolas ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒}。\par
+	8. 300pts+ 并且猜出题目中的歌曲者可向出题人领赏 $30$RMB。 \par
+	9. 请把 {\consolas ▒▒▒▒} 读作【数据删除】。\par 
+	10. {\consolas ▒▒▒▒}造数据，欢迎各种乱搞，各位选手 AK 后请勿大声喧哗。
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\newprob{小木棍}{polygon} \\ \indent
+	九点一刻。\par
+	{\consolas ▒▒▒▒▒▒▒} 盯着刚刚通过的 polygon 大样例，十分的无聊。\par
+	为了让自己能安心睡着，{\consolas ▒▒▒▒▒▒▒} 给自己出了一道 polygon-Pro-Max-Ultra 版。\par 
+	由于他真的盯着 polygon-Pro-Max-Ultra 睡着了，所以问题就留给你了。
+	\para{题目描述} \\ \indent
+	给你 $n$ 根小木棍，长度 $a_1,a_2,\dots,a_n$。
+	你需要选出一个可重集 $s$，规则如下：\par 
+		1. 将 $a$ 分成一些可重集 $x_1,x_2,\dots,x_k$ 使 $a$ 中任意元素都恰好属于某一个可重集。\par
+		2. 选择 $x_i$ 的众数加入 $s$ $(i\in [1,k])$。\par
+	现在问你不同的 $s$ 有多少种，答案对 $(114514+1919810)$ 取模。
+	\para{输入格式} \\ \indent
+	从文件 \filename{polygon.in} 中读入数据。 \par
+	第一行一个整数 $n$，表示木棍个数。\par 
+	第二行 $n$ 个整数，第 $i$ 个整数表示 $a_i$。
+	\para{输出格式} \\ \indent
+	输出到文件 \filename{polygon.out} 中。 \par
+	一行一个正整数，表示答案。
+	\sample{1}{输入}
+	\begin{lstlisting}
+3
+1 2 2
+	\end{lstlisting}
+	
+	\sample{1}{输出}
+	\begin{lstlisting}
+4
+	\end{lstlisting}
+	
+	\sample{1}{解释}\par 
+	所有可能的 $s$ 有如下四种情况：$\{2\},\{2,2\},\{1,2\},\{1,2,2\}$ \par 
+	\sample{2}{输入}
+	\begin{lstlisting}
+10
+1 1 1 2 2 2 3 3 3 4
+	\end{lstlisting}
+	
+	\sample{2}{输出}
+	\begin{lstlisting}
+126
+	\end{lstlisting}
+	
+	\sample{3}{} \\ \indent
+	见选手目录下的 \filename{polygon/polygon3.in} 与 \filename{polygon/polygon3.ans}，该样例满足 $n=5000$。\par
+	
+	\para{数据范围} \\ \indent
+	\begin{center}
+		\begin{tabu}{c|c|c}
+			\tabucline[2pt]{-}
+			测试点编号 & 特殊性质 & $n$ \\ \tabucline[1.2pt]{-}
+			$1$ & 无 & \multirow{2}{*}{5}  \\ \cline{1-2}
+			$2$ & \multirow{2}{*}{A} &  \\ \cline{1-1}\cline{3-3} 
+			$3$ &  & \multirow{2}{*}{50} \\ \cline{1-2} 
+			$4$ & \multirow{2}{*}{无} & \\ \cline{1-1}\cline{3-3} 
+			$5$ &  & \multirow{2}{*}{500} \\ \cline{1-2} 
+			$6$ & \multirow{2}{*}{A} &  \\ \cline{1-1}\cline{3-3} 
+			$7$ &  & \multirow{2}{*}{5000} \\ \cline{1-2} 
+			$8\sim 20$ & 无 & \\  \cline{1-3}
+			\tabucline[2pt]{-}
+		\end{tabu}
+	\end{center}
+	
+	对于 $100\%$ 的测试点，保证 $n\leq 5000,a_i\leq n$ $(i\in[1,n])$
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\newprob{献祭}{xor} \\ \indent
+	\udot{本题难度预估：下位绿}。\par
+	$------------------------ $ \par
+	我知道你肯定是做第一题看不下去了才跑过来看第二题的。 \par 
+	你现在如果再去看一眼第三题，你可能会丧失更多对这套题的兴趣。  \par
+	但是这道题真的是一道水题。  \par
+	而且第四题比这道题还要水。  \par
+	就算你依然不会，你也应该认真思考，如何找到题目的突破口。  \par
+	这对于思维训练的帮助是巨大的。  \par
+	这也是我们打模拟赛的根本原因。  \par
+	
+	
+	\para{题目描述} \\ \indent
+	异或之神的面前，出现了 $n$ 个献祭者。  \par
+	每个献祭者体内都用一种神秘物质：异或之液。\par
+	每个献祭者都有一个编号以及异或之液的纯度，编号从 $1$ 到 $n$ 连续。 \par 
+	这些献祭者按照编号从小到大被排成一排。  \par
+	共有 $m$ 次献祭仪式，每一次献祭仪式，异或之神都会选择若干名编号连续的献祭者，其中编号最小的为 $l$，编号最大的为 $r$，且 $r-l>1$。\par
+	然后，他会将选出的这些献祭者按照编号从小到大抽取他们的异或之液，并按顺序注入一条可以玻璃管内。  \par
+	注意，不同献祭者的异或之液\udot{目前}是不会相融的。  \par
+	注入完之后会把玻璃管切成若干段，注意，他只会在两种纯度不同的异或之液的交界处进行切割。  \par
+	切割后，玻璃管被分成 $k$ 段，并且 $k\ge2$。  \par
+	紧接着，异或之神就会使用魔法将每一段内的异或之液开始融合。  \par
+	融合后的异或之液的纯度为融合前所有异或之液纯度的异或和。  \par
+	当每一段中的异或之液都充分融合后，异或之神开始检查每一段的纯度。  \par
+	如果所有段的纯度都相等，那么异或之神就会得到异或之液的法力，从而提升自己的异或水平，否则他将不会有任何变化。  \par
+	现在，他想知道，对于给定的 $l,r$ 存不存在一种切割方案使得他可以提升自己的异或水平。 \par 
+	如果存在输出 poly，否则输出 modui。  \par
+	\para{输入格式} \\ \indent
+	从文件 \filename{xor.in} 中读入数据。 \par
+	第一行包含两个整数 $n$ 和 $m$。\par
+	
+	下一行包含 $n$ 个整数 $a_1,\cdots,a_n$。\par
+	
+	接下来的每行 $q$ 包含两个整数 $l$ 和 $r$，分别描述查询。\par
+	\para{输出格式} \\ \indent
+	输出到文件 \filename{xor.out} 中。 \par
+	对于每个查询，输出 "poly" 或 "modui"。
+	
+	\sample{1}{输入}
+	\begin{lstlisting}
+		4
+		5 5
+		1 1 2 3 0
+		1 5
+		2 4
+		3 5
+		1 3
+		3 4
+		5 5
+		1 2 3 4 5
+		1 5
+		2 4
+		3 5
+		1 3
+		2 3
+		7 4
+		12 9 10 9 10 11 9
+		1 5
+		1 7
+		2 6
+		2 7
+		11 4
+		0 0 1 0 0 1 0 1 1 0 1
+		1 2
+		2 5
+		6 9
+		7 11
+	\end{lstlisting}
+	
+	\sample{1}{输出}
+	\begin{lstlisting}
+		YES
+		YES
+		NO
+		NO
+		NO
+		
+		YES
+		NO
+		NO
+		YES
+		NO
+		
+		NO
+		NO
+		NO
+		NO
+		
+		YES
+		NO
+		YES
+		YES
+		
+	\end{lstlisting}
+	\sample{1}{解释} \\ \indent
+	本题没有多组数据，方便排版将 $4$ 组样例压在同一样例中。
+	\para{数据范围} \\ \indent
+	对于 $20\%$ 的数据，$n,m\le 100$。  \par 
+	对于 $100\%$ 的数据，$n,m\le 2\times10^5$。 \par 
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\newprob{染色体}{lx} \\ \indent
+	\begin{center}
+		蒹葭苍苍，白露为霜。\par
+		所谓伊人，在水一方。\par
+		溯洄从之，道阻且长。\par
+		溯游从之，宛在水中央。\par
+		蒹葭萋萋，白露未晞。\par
+		所谓伊人，在水之湄。\par
+		溯洄从之，道阻且跻。\par
+		溯游从之，宛在水中坻。\par
+		蒹葭采采，白露未已。\par
+		所谓伊人，在水之涘。\par
+		溯洄从之，道阻且右。\par
+		溯游从之，宛在水中沚。\par
+	\end{center}
+	\para{题目描述} \\ \indent
+	\udot{本题难度预估：下位紫}。\par
+	$------------------------ $ \par
+	\udot{本题有多组数据。}\par
+	白露再次凝成霜，一年又一年，来自 ZJ 的 LX 大佬却不会长大，因为他有着像李渊一样的心智，不过嘛，终究还是要来到初中。\par 
+	踏入新的省份，新的班级，LX 大佬是多么的陌生，望着周围新的环境、新的同学、新的老师以及那新的关系，他有些迷茫，但他那李渊一样的心智帮了他，让他渐渐地融入了这个新的班级。\par
+	不过，LX 大佬引起了有个同学 Fish 的注意，因为 LX 是那么的活泼，和谁都能玩在一起，又是那么的优秀，常年霸榜\udot{逆序铜牌}，Fish 不知怎的，似乎有种莫莫名名的感觉在她的内心荡漾。\par
+	渐渐地，他们也熟识了，从陌生人到交往，从交往到熟识，从熟识到朋友，从朋友到……\par
+	随着时间的推移，LX 和 Fish 也开始了信件上的单独相约，从生快的祝福，到绚丽的诗文，他享受着 Fish 信件的陪伴。  \par
+	可是 Fish 不知道的是，LX 大佬从出生起，就比常人多了一条 $21$ 号染色体。 \par 
+	基因的缺陷始终令 LX 自卑，不敢直面自己，看到作为正常入的 Fish 愉悦的活着的时候，他总感到难以自拔的悲伤。  \par
+	明智的 LX 大佬意识到，他必须学会拒绝 Fish。  \par
+	当 LX 大佬向 Fish 坦白一切时，Fish 彻底崩溃。  \par
+	从此以后，Fish 的信件中遍充斥着血泪的控诉与呼喊，可 LX 仍然不为所动，再未回过一封。 \par  
+	直到某一天，一封信引起了 LX 的注意。  \par
+	这封信写得工工整整，恰好写满了 $n$ 行，$n$ 列的作文纸。  \par
+	待他仔细看向信件的内容时，却看作文纸的每个格子中，都是一个数字。  \par
+	学过 MO 的 LX 大佬一眼看出了 Fish 的把戏。\par  
+	第 $i$ 行，第 $j$ 列的数中就是 $f(\gcd(i,j))$。\par  
+	$f(i)$ 是斐波那契数列的第 $i$ 项。\par
+	Fish 在信件的背面写道：\par
+	\begin{framed}
+		To LX:\par
+		所有格子中数字的乘积，模 $998244353$，就是你所期待的，安史之乱的密码。  
+		祝好。\par
+	\end{framed}
+	高傲的 LX 大佬却热泪盈眶。  \par
+	他不敢相信，Fish 竟然为了他，不知付出多少努力，找到了消去他那可恶的染色体的关键数字。  
+	可惜，计算那 $n^2$ 个数的乘积实在是过于庞大，他难以计算。\par
+	所以他找到了你。  \par
+	$ $\par
+	形式化题意：\par
+	给你一个 $n\times n$ 的方阵 $A$，$A_{i,j}=\gcd(f(i),f(j))$，请你求出 $A$ 中所有数的乘积模 $998244353$ 的值。 \par 
+	
+	\para{输入格式} \\ \indent
+	从文件 \filename{lx.in} 中读入数据。 \par
+	
+	\para{输出格式} \\ \indent
+	输出到文件 \filename{lx.out} 中。 \par
+	Output. 
+	
+	\sample{1}{输入}
+	\begin{lstlisting}
+		Sample Input.
+	\end{lstlisting}
+	
+	\sample{1}{输出}
+	\begin{lstlisting}
+		Sample Output.
+	\end{lstlisting}
+	
+	\sample{1}{解释} \\ \indent
+	Note.
+	
+	\sample{2}{} \\ \indent
+	见选手目录下的 \filename{lx/lx2.in} 与 \filename{lx/lx2.ans}。
+	
+	\para{数据范围} \\ \indent
+	对于 $60\%$ 的数据，$n,m\le 10^5$。 \par 
+	对于 $100\%$ 的数据，$n,m\le 3\times10^7$。 \par 
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\newprob{线段树二分}{segbs} \\ \indent
+	\udot{题目名称与本题做法没有关联。}\par
+	某场模拟赛正在进行。\par
+	Uit：T1 怎么做啊？ \par
+	（T1 正解是莫队） \par
+	Col：用树剖写。  \par
+	十五分钟后。 \par 
+	Uit：树剖过了。\par    
+	
+	\para{题目描述} \\ \indent
+	\udot{本题难度预估：上位黄}。\par
+	$------------------------$ \par
+	给你一个长度为 $n$ 的序列 $a$，$m$ 次操作。\par 
+	操作 $1$：给定 $l,r$，问 $a_l,a_{l+1},\cdots,a_r$ 是否两两不同。\par
+	操作 $2$：给定 $l,r$，问 $a_l,a_{l+1},\cdots,a_r$ 是否两两相同。\par
+	操作 $3$：给定 $l,r$，问 $a_l,a_{l+1},\cdots,a_r$ 是否是一个从 $1$ 到 $r-l+1$ 的排列。\par        
+	操作 $4$：给定 $l,r,s,t$，问可重集 $\{a_l,a_{l+1},\cdots,a_r\}$，$\{a_s,a_{s+1},\cdots,a_t\}$ 是否完全相同。\par   
+	顾名思义，可重集就是可以有相同元素的集合。
+	
+	
+	\para{输入格式} \\ \indent
+	从文件 \filename{segbs.in} 中读入数据。 \par
+	
+	\para{输出格式} \\ \indent
+	输出到文件 \filename{segbs.out} 中。 \par
+	Output. 
+	
+	\sample{1}{输入}
+	\begin{lstlisting}
+		Sample Input.
+	\end{lstlisting}
+	
+	\sample{1}{输出}
+	\begin{lstlisting}
+		Sample Output.
+	\end{lstlisting}
+	
+	\sample{1}{解释} \\ \indent
+	Note.
+	
+	\sample{2}{} \\ \indent
+	见选手目录下的 \filename{segbs/segbs2.in} 与 \filename{segbs/segbs2.ans}。
+	
+	\para{数据范围} \\ \indent
+	对于 $25\%$ 的数据，$n,m\le 10^3$。  \par 
+	对于 $50\%$ 的数据，$n,m\le 10^5$。 \par 
+	对于 $75\%$ 的数据，$n,m\le 10^6$。 \par 
+	对于 $100\%$ 的数据，$n,m\le 3\times10^7$。 \par   
+	对于每一档不同的 $n,m$ 范围，都有 15 个点，分别对应 $4$ 个操作的所有组合。
+\end{document}

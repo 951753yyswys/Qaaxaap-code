@@ -1,0 +1,71 @@
+构造题专项训练
+
+
+
+P3514	[POI2011] LIZ-Lollipop	                                前缀和                                提高+/省选-	  Special Judge
+
+P5441	【XR-2】伤痕	                                                数学  组合数学  构造            提高+/省选-	  Special Judge
+
+AT_agc029_c	[AGC029C] Lexicographic constraints	                                         提高+/省选-	  二分答案
+
+AT_hitachi2020_c	ThREE	                                                                                         提高+/省选-	  二分图染色方案
+
+CF1283F	DIY Garland	                                                                                         提高+/省选-	
+
+P3599	Koishi Loves Construction	                                数学                                  省选/NOI-	 Special Judge
+
+P3640	[APIO2013] 出题人	                                                最短路  构造                      省选/NOI-         提交答案
+	
+AT_arc103_b	[ABC111D] Robot Arms	                                                        省选/NOI-	   贪心构造
+
+AT_arc103_d	[ARC103F] Distance Sums	                                                        省选/NOI-         Special Judge
+	
+AT_agc030_c	[AGC030C] Coloring Torus	                                                        省选/NOI-	 一道很神仙的紫构造
+
+AT_agc035_c	[AGC035C] Skolem XOR Tree	                                                        省选/NOI-	 树
+
+AT_agc041_e	[AGC041E] Balancing Network	                                                        省选/NOI-	一道有趣的构造题
+
+AT_hitachi2020_e	Odd Sum Rectangles	                                                                        省选/NOI-
+	
+CF1270E	Divide Points	                                                                                        省选/NOI-        二染色的方法
+	
+CF1311E	Construct the Binary Tree	                                贪心  构造                         省选/NOI-        满二叉树
+	
+P3526	[POI2011] OKR-Periodicity	                                构造                                  NOI/NOI+/CTSC         科技感+脑力的题     字符串
+	
+AT_agc027_f	[AGC027F] Grafting	                                                                        NOI/NOI+/CTSC         拓扑排序
+	
+CF1264F	Beautiful Fibonacci Problem	                                                                        NOI/NOI+/CTSC          一道名副其实（beautiful）的结论题  数学
+	
+CF1267H	Help BerLine                                                                                                     NOI/NOI+/CTSC         贪心  构造                                                                                               
+
+
+
+
+
+CF784D	Touchy-Feely Palindromes	字符串                           普及+/提高
+
+CF989C	A Mist of Florescence	连通块  构造                   提高+/省选-
+
+CF1016D	Vasya And The Matrix	进制  构造                      提高+/省选-
+
+CF1868D	Flower-like Pseudotree	构造  分类讨论                省选/NOI-
+
+CF1025D	Recovering BST	                搜索  构造                      省选/NOI-
+
+CF1379E	Inverse Genealogy	                                                     省选/NOI-
+
+CF1917E	Construct Matrix	                构造                              省选/NOI-
+
+CF1896F	Bracket Xoring	                构造                              省选/NOI-
+
+CF1748F	Circular Xor Reversal	                位运算  构造                   NOI/NOI+/CTSC
+
+
+
+
+
+
+
+

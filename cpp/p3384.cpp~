@@ -1,0 +1,221 @@
+#include<bits/stdc++.h>
+using namespace std;
+int mod,head[200100],cnt,son[100100],fa[100010],dep[100110],siz[100100],top[100010],mson[100100],num,dfn[100010],rnf[100010],a[100100];
+struct edge
+{
+	int to,nxt;
+} e[200100];
+struct tree
+{
+	int l,r,sum,lz;
+}t[400010];
+inline void pushdown(int ro)
+{
+	t[ro*2].sum=(t[ro*2].sum+t[ro].lz*(t[ro*2].r-t[ro*2].l+1))%mod;
+	t[ro*2+1].sum=(t[ro*2+1].sum+t[ro].lz*(t[ro*2+1].r-t[ro*2+1].l+1))%mod;
+	t[ro*2].lz=(t[ro].lz+t[ro*2].lz)%mod;
+	t[ro*2+1].lz=(t[ro].lz+t[ro*2+1].lz)%mod;
+	t[ro].lz=0;
+}
+inline void pushup(int ro)
+{
+	t[ro].sum=(t[ro*2].sum+t[ro*2+1].sum)%mod;
+}
+void build(int ro,int l,int r)
+{
+	t[ro]={l,r,0,0};
+	if(l==r) return void(t[ro]={l,r,a[rnf[l]],0});
+	int mid=l+r>>1;
+	build(ro*2,l,mid);
+	build(ro*2+1,mid+1,r);
+	pushup(ro);
+}
+void update(int ro,int l,int r,int v)
+{
+	if(t[ro].l>=l&&t[ro].r<=r) 
+	{
+		t[ro].lz=(t[ro].lz+v)%mod;
+		t[ro].sum=(t[ro].sum+v*(t[ro].r-t[ro].l+1))%mod;
+		return;
+	}
+	pushdown(ro);
+	int mid=t[ro].l+t[ro].r>>1;
+	if(l<=mid) update(ro*2,l,r,v);
+	if(mid<r) update(ro*2+1,l,r,v);
+	pushup(ro);
+}
+int query(int ro,int l,int r)
+{
+	if(t[ro].l>=l&&t[ro].r<=r) return t[ro].sum;
+	pushdown(ro);
+	int mid=t[ro].l+t[ro].r>>1,ans=0;
+	if(l<=mid) ans+=query(ro*2,l,r);
+	if(mid<r) ans+=query(ro*2+1,l,r);
+	return ans%mod;
+}
+inline void add(int u,int v)
+{
+	cnt++;
+	e[cnt].to=v;
+	e[cnt].nxt=head[u];
+	head[u]=cnt;
+}
+void dfs1(int u,int f)
+{
+	int mx=-1;
+	dep[u]=dep[f]+1;
+	siz[u]=0;
+	son[u]=-1;
+	fa[u]=f;
+	for(int i=head[u];i;i=e[i].nxt)
+	{
+		int v=e[i].to;
+		if(v!=f) 
+		{
+			dfs1(v,u);
+			siz[u]+=siz[v]+1;
+			if(mx<siz[v]) mx=siz[v],son[u]=v;
+		}
+	}
+}
+void dfs2(int u,int t)
+{
+	num++;
+	top[u]=t;
+	dfn[u]=num;
+	rnf[num]=u;
+	mson[u]=dfn[u];
+	if(son[u]==-1) return;
+	dfs2(son[u],t);
+	for(int i=head[u];i;i=e[i].nxt)
+	{
+		int v=e[i].to;
+		if(v!=fa[u]&&v!=son[u]) dfs2(v,v);
+		if(v!=fa[u]) mson[u]=max(mson[u],mson[v]);
+	}
+}
+int lca(int x,int y)
+{
+	while(top[x]!=top[y])
+	{
+		if(dep[top[x]]>dep[top[y]]) x=fa[top[x]];
+		else y=fa[top[y]];
+	}
+	if(dep[x]>dep[y]) return y;
+	else return x;
+}
+void addroad_old(int x,int y,int z)
+{
+	int yf=lca(x,y);
+	while(top[x]!=top[yf])
+	{
+		update(1,dfn[top[x]],dfn[x],z);
+		x=fa[top[x]];
+	}
+	update(1,dfn[yf],dfn[x],z);
+	while(top[y]!=top[yf])
+	{
+		update(1,dfn[top[y]],dfn[y],z);
+		y=fa[top[y]];
+	}
+	update(1,dfn[yf],dfn[y],z);
+	update(1,dfn[yf],dfn[yf],-z);
+}
+inline void addroad(int x,int y,int z)
+{
+	while(top[x]!=top[y])
+	{
+		if(dep[top[x]]>dep[top[y]]) 
+		{
+			update(1,dfn[top[x]],dfn[x],z);
+			x=fa[top[x]];
+		}
+		else 
+		{
+			update(1,dfn[top[y]],dfn[y],z);
+			y=fa[top[y]];
+		}
+	}
+	int yf;
+	if(dep[x]>dep[y]) update(1,dfn[y],dfn[x],z);
+	else update(1,dfn[x],dfn[y],z);
+}
+inline int queryroad(int x,int y)
+{
+	int ans=0;
+	while(top[x]!=top[y])
+	{
+		if(dep[top[x]]>dep[top[y]]) 
+		{
+			ans=(ans+query(1,dfn[top[x]],dfn[x]))%mod;
+			x=fa[top[x]];
+		}
+		else 
+		{
+			ans=(ans+query(1,dfn[top[y]],dfn[y]))%mod;
+			y=fa[top[y]];
+		}
+	}
+	int yf;
+	if(dep[x]>dep[y]) ans=(ans+query(1,dfn[y],dfn[x]))%mod;
+	else ans=(ans+query(1,dfn[x],dfn[y]))%mod;
+	return ans;
+}
+int queryroad_old(int x,int y)
+{
+	int ans=0;
+	int yf=lca(x,y);
+	while(top[yf]!=top[x])
+	{
+		ans+=query(1,dfn[top[x]],dfn[x]);
+		x=fa[top[x]];
+	}
+	ans+=query(1,dfn[yf],dfn[x]);
+	while(top[yf]!=top[y])
+	{
+		ans+=query(1,dfn[top[y]],dfn[y]);
+		y=fa[top[y]];
+	}
+	ans+=query(1,dfn[yf],dfn[y]);
+	ans-=query(1,dfn[yf],dfn[yf]);
+	return ans;
+}
+inline void addsubt(int x,int z)
+{
+	update(1,dfn[x],mson[x],z);
+}
+inline int querysubt(int x)
+{
+	return query(1,dfn[x],mson[x]);
+}
+signed main()
+{
+	//freopen("P3384_8.in","r",stdin);
+	//freopen("p3384.out","w",stdout);
+	ios::sync_with_stdio(0);
+	cin.tie(0); cout.tie(0);
+	int n,m,r,p;
+	cin>>n>>m>>r>>p;
+	mod=p;
+	for(int i=1;i<=n;i++) cin>>a[i];
+	for(int i=1;i<n;i++)
+	{
+		int u,v;
+		cin>>u>>v;
+		add(u,v);
+		add(v,u);
+	}
+	dfs1(r,0);
+	dfs2(r,r);
+	build(1,1,n);
+	for(int i=1;i<=m;i++)
+	{
+		int opt,x,y,z;
+		cin>>opt;
+		if(opt==1) cin>>x>>y>>z,addroad(x,y,z);
+		if(opt==2) cin>>x>>y,cout<<queryroad(x,y)<<"\n";
+		if(opt==3) cin>>x>>z,addsubt(x,z);
+		if(opt==4) cin>>x,cout<<querysubt(x)<<"\n";
+	}
+	return 0; 
+}

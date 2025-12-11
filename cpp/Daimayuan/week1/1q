@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	void work()
+	{
+		int n;
+		cin>>n;
+		vector<int> p(n+1),q(n+1),invp(n+1),invq(n+1);
+		for(int i=1;i<=n;i++) cin>>p[i],invp[p[i]]=i;
+		for(int i=1;i<=n;i++) cin>>q[i],invq[q[i]]=i;
+		int lp=invp[1],rp=lp,lq=invq[1],rq=lq,ans=0;
+		for(int i=1;i<=n;i++)
+		{
+			lp=min(lp,invp[i]);
+			rp=max(rp,invp[i]);
+			lq=min(lq,invq[i]);
+			rq=max(rq,invq[i]);
+			if(lp==lq&&rp==rq&&rq-lq+1==i) ans++;
+		}
+		cout<<ans<<endl;
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+

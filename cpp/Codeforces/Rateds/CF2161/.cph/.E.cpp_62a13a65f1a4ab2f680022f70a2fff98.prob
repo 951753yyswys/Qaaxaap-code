@@ -1,0 +1,1 @@
+{"name":"Local: E","url":"d:\\code\\cpp\\Codeforces\\Rateds\\CF2161\\E.cpp","tests":[{"id":1761851031615,"input":"3\n5 3\n0??0?\n7 7\n1??1??1\n9 5\n?????????\n","output":"3\n15\n46"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\code\\cpp\\Codeforces\\Rateds\\CF2161\\E.cpp","group":"local","local":true}

@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	void work()
+	{
+		int t;
+		cin>>t;
+		while(t--)
+		{
+			vector<int> cnt(128);
+			string s,t;
+			cin>>s>>t;
+			for(int i=0;i<s.size();i++) cnt[s[i]]--;
+			for(int i=0;i<t.size();i++) cnt[t[i]]++;
+			bool flag=1;
+			for(char i='a';i<='z';i++) if(cnt[i]<0) flag=0;
+			if(flag==0)
+			{
+				cout<<"Impossible"<<endl;
+				continue;
+			}
+			char lt='a';
+			for(int i=0;i<s.size();i++)
+			{
+				while(cnt[lt]<=0&&lt<='z') lt++;
+				while(lt<s[i]) 
+				{
+					//cout<<lt<<endl;
+					for(int j=1;j<=cnt[lt];j++)
+					{
+						cout<<lt;
+					}
+					cnt[lt]=0;
+					while(cnt[lt]<=0&&lt<='z') lt++;
+				}
+				cout<<s[i];
+			}
+			for(char i='a';i<='z';i++) for(int j=1;j<=cnt[i];j++) cout<<i;
+			cout<<endl;
+		}
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+

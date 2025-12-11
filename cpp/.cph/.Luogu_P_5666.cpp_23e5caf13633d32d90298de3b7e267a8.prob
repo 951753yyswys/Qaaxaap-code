@@ -1,0 +1,1 @@
+{"name":"Luogu - P5666","url":"https://www.luogu.com.cn/problem/P5666","memoryLimit":256000,"timeLimit":4000,"tests":[{"id":1761696910493,"input":"2\n5\n1 2\n2 3\n2 4\n3 5\n7\n1 2\n1 3\n1 4\n3 5\n3 6\n6 7","output":"32\n56"}],"group":"luogu","srcPath":"d:\\code\\cpp\\Luogu_P_5666.cpp"}

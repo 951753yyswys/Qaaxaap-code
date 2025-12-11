@@ -1,0 +1,1 @@
+{"name":"Local: B","url":"d:\\code\\cpp\\Daimayuan\\test1\\B.cpp","tests":[{"id":1763565306299,"input":"5 2 2\nababa","output":"2"},{"id":1763565321764,"input":"3 1 1\naba","output":"1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\code\\cpp\\Daimayuan\\test1\\B.cpp","group":"local","local":true}

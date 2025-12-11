@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct tree
+{
+	int l,r,ls,rs,tdu,hdu,sum;
+} t[2000020];
+struct number
+{
+	int x,id;
+} ya[100010];
+bool cmp(number x,number y)
+{
+	return x.x<y.x;
+}
+int cnt,a[100010],num;
+int update(int ro,int l,int r,int v)
+{
+	cnt++;
+	t[cnt]=t[ro];
+	t[cnt].l=l;
+	t[cnt].r=r;
+	t[cnt]
+}
+int main()
+{
+	int n;
+	cin>>n;
+	for(int i=1;i<=n;i++) cin>>ya[i].x,ya[i].id=i;
+	sort(ya+1,ya+n+1,cmp);
+	for(int i=1;i<=n;i++)
+	{
+		if(ya[i].x!=ya[i-1].x) num++;
+		ya[i].x=num;
+	}
+	for(int i=1;i<=n;i++) a[ya[i].id]=ya[i].x;
+
+	return 0;
+}

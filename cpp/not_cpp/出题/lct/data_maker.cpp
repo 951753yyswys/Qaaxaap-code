@@ -1,0 +1,94 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <random>
+#include <algorithm>
+#include <string>
+#include <ctime>
+using namespace std;
+
+mt19937 gen;
+
+vector<pair<int, int>> generate_tree(int n, int type) {
+    vector<pair<int, int>> edges;
+    if (type == 0) { // Random tree
+        for (int i = 2; i <= n; i++) {
+            uniform_int_distribution<int> distrib(1, i - 1);
+            int p = distrib(gen);
+            edges.push_back({p, i});
+        }
+    } else if (type == 1) { // Chain
+        for (int i = 2; i <= n; i++) {
+            edges.push_back({i - 1, i});
+        }
+    } else if (type == 2) { // Star
+        for (int i = 2; i <= n; i++) {
+            edges.push_back({1, i});
+        }
+    }
+    
+    // Shuffle edges
+    shuffle(edges.begin(), edges.end(), gen);
+    
+    // Randomly swap endpoints for each edge
+    for (auto& e : edges) {
+        uniform_int_distribution<int> distrib(0, 1);
+        if (distrib(gen)) {
+            swap(e.first, e.second);
+        }
+    }
+    return edges;
+}
+
+int main() {
+    random_device rd;
+    gen = mt19937(rd());
+    
+    for (int test_id = 1; test_id <= 20; test_id++) {
+        string filename = "lct" + to_string(test_id) + ".in";
+        ofstream fout(filename);
+        
+        int t;
+        vector<int> n_list;
+        int tree_type = 0; // Default: random tree
+        
+        switch (test_id) {
+            case 1: t = 1; n_list = {100}; break;
+            case 2: t = 10; n_list = vector<int>(10, 10); break;
+            case 3: t = 50; n_list = vector<int>(50, 2); break;
+            case 4: t = 1; n_list = {1000}; break;
+            case 5: t = 100; n_list = vector<int>(100, 10); break;
+            case 6: t = 500; n_list = vector<int>(500, 2); break;
+            case 7: t = 1; n_list = {200000}; tree_type = 2; break; // Star
+            case 8: t = 2; n_list = {100000, 100000}; tree_type = 2; break; // Star
+            case 9: t = 1; n_list = {100000}; tree_type = 1; break; // Chain
+            case 10: t = 2; n_list = {100000, 100000}; tree_type = 1; break; // Chain
+            case 11: t = 1; n_list = {200000}; break;
+            case 12: t = 2; n_list = {100000, 100000}; break;
+            case 13: t = 100000; n_list = vector<int>(100000, 2); break;
+            case 14: t = 10000; n_list = vector<int>(10000, 20); break;
+            case 15: t = 5000; n_list = vector<int>(5000, 40); break;
+            case 16: t = 2000; n_list = vector<int>(2000, 100); break;
+            case 17: t = 1000; n_list = vector<int>(1000, 200); break;
+            case 18: t = 100; n_list = vector<int>(100, 2000); break;
+            case 19: t = 10; n_list = vector<int>(10, 20000); break;
+            case 20: 
+                t = 101; 
+                n_list = vector<int>(101, 1000); 
+                n_list[0] = 100000; 
+                break;
+        }
+        
+        fout << t << "\n";
+        for (int i = 0; i < t; i++) {
+            int n = n_list[i];
+            fout << n << "\n";
+            vector<pair<int, int>> edges = generate_tree(n, tree_type);
+            for (auto& e : edges) {
+                fout << e.first << " " << e.second << "\n";
+            }
+        }
+        fout.close();
+    }
+    return 0;
+}

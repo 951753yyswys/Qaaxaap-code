@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	void work()
+	{
+		int t ;
+		cin>>t;
+		while(t--)
+		{
+			int n;
+			cin>>n;
+			vector<int> a(n);
+			for(auto &tmp:a) cin>>tmp;
+			set<int> st;
+			for(auto tmp:a) st.insert(tmp);
+			int col=st.size();
+			while(1)
+			{
+				if(st.find(col)) break;
+				else st.insert(col);
+				col++;
+			}
+			cout<<col<<endl;
+		}
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+

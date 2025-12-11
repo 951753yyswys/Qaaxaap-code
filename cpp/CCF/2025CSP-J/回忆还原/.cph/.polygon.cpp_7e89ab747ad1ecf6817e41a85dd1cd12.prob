@@ -1,0 +1,1 @@
+{"name":"Local: polygon","url":"d:\\code\\cpp\\CCF\\2025CSP-J\\回忆还原\\polygon.cpp","tests":[{"id":1762058100667,"input":"5\n2 2 3 8 10","output":"6"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\code\\cpp\\CCF\\2025CSP-J\\回忆还原\\polygon.cpp","group":"local","local":true}

@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	void work()
+	{
+		int n,k,q,ans=0x7fffffff;
+		cin>>n>>k>>q;
+		vector<int> a(n);
+		for(auto &tmp:a) cin>>tmp;
+		//vector<int> b=a;
+		//sort(b.begin(),b.end());
+		//ans=b[q-1]-b[0];
+		for(auto tmp:a)
+		{
+			vector<vector<int>> s;
+			vector<int> ls;
+			for(auto tmp1:a)
+			{
+				if(tmp1<tmp)
+				{
+					s.push_back(ls);
+					ls.clear();
+					continue;
+				}
+				ls.push_back(tmp1);
+			}
+			s.push_back(ls);
+			vector<int> wait;
+			for(auto &vec:s)
+			{
+				//cout<<"tmp:"<<tmp<<endl;
+				//cout<<"vec:";
+				//for(auto tmpp:vec) cout<<tmpp<<' ';
+				//cout<<endl;
+				if(vec.size()<k) continue;
+				sort(vec.begin(),vec.end());
+				for(int i=0;i<=vec.size()-k;i++) wait.push_back(vec[i]);
+			}
+			if(wait.size()<q) continue;
+			sort(wait.begin(),wait.end());
+			ans=min(ans,wait[q-1]-tmp);
+		}
+		cout<<ans;
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+

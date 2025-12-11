@@ -1,0 +1,1 @@
+{"name":"Local: 1879C","url":"d:\\code\\cpp\\Codeforces\\Solving\\1879C.cpp","tests":[{"id":1761300900156,"input":"4\n10010\n111\n0101\n11001\n","output":"1 2\n2 6\n0 1\n2 8"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\code\\cpp\\Codeforces\\Solving\\1879C.cpp","group":"local","local":true}

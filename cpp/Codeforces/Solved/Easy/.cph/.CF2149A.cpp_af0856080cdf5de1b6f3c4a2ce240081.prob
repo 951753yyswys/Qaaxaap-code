@@ -1,0 +1,1 @@
+{"name":"Local: CF2149A","url":"d:\\code\\cpp\\Codeforces\\Solved\\Easy\\CF2149A.cpp","tests":[{"id":1761810393354,"input":"3\n3\n-1 0 1\n4\n-1 -1 0 1\n5\n-1 -1 -1 0 0\n","output":"3\n1\n4\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\code\\cpp\\Codeforces\\Solved\\Easy\\CF2149A.cpp","group":"local","local":true}

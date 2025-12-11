@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+int f[40][40][40];
+int dfs(int a,int b,int c)
+{
+	if(min({a,b,c})<=0) return 1;
+	if(max({a,b,c})>20) a=b=c=20;
+	if(f[a][b][c]!=0) return f[a][b][c];
+	if(a<b&&b<c) return f[a][b][c]=dfs(a,b,c-1)+dfs(a,b-1,c-1)-dfs(a,b-1,c);
+	return f[a][b][c]=dfs(a-1,b,c)+dfs(a-1,b-1,c)+dfs(a-1,b,c-1)-dfs(a-1,b-1,c-1);
+}
+int main()
+{
+	int a,b,c;
+	while(cin>>a>>b>>c&&!(a==-1&&b==-1&&c==-1)) 
+		cout<<"w("<<a<<", "<<b<<", "<<c<<") = "<<dfs(a,b,c)<<endl;
+}

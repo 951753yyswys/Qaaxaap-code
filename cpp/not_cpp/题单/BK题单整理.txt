@@ -1,0 +1,583 @@
+数据结构-链表
+
+
+P3201	[HNOI2009] 梦幻布丁	                                线段树  平衡树  枚举                                 省选/NOI−
+P10478	生日礼物	                                                贪心  优先队列                                         提高+/省选−
+P4352	[CERC2015] Greenhouse Growth	                                                               NOI/NOI+/CTSC
+P3452	[POI2007] BIU-Offices	                线性数据结构  深度优先搜索,DFS               提高+/省选−
+CF627E	Orchestra	                                                                                                               NOI/NOI+/CTSC
+P5763	[NOI1999] 内存分配	                                                                                               提高+/省选−
+
+
+数据结构-栈
+
+
+CF508E	Arthur and Brackets	                                 模拟  贪心  栈                                           省选/NOI−
+P7306	[COCI2018-2019#1] Strah	                 单调队列                                                  提高+/省选−
+P4039	[AHOI2014/JSOI2014] 拼图	                                                                                NOI/NOI+/CTSC
+AT_arc081_d	[ARC081F] Flip and Rectangles	                                                                省选/NOI−
+CF620D	Professor GukiZ and Two Arrays	                                                                提高+/省选−
+「Hdu4699」Editor
+CF817D	Imbalanced Array	                                                                                                 普及+/提高
+P1155	[NOIP2008 提高组] 双栈排序	                  图论  二分图                                             提高+/省选−
+
+
+数据结构-队列
+
+
+CF140C	New Year Snowmen	                                  离散化  优先队列  队列                               提高+/省选−
+CF962D	Merge Equals	                                  排序  优先队列  队列                                  普及/提高−
+CF1251E2	Voting (Hard Version)	                                                                                  省选/NOI−
+CF91B	Queue	                                                  线段树                                                       普及+/提高
+CF590C	Three States	                                  枚举                                                          省选/NOI−
+
+
+数据结构-线段树
+
+
+P10463	Interval GCD	                                    线段树                                                      普及+/提高
+P10513	括号	                                                    线段树                                                      提高+/省选−
+P2056	[ZJOI2007] 捉迷藏	                                    点分治                                                      省选/NOI−
+CF482B	Interesting Array	                                    线段树  进制  构造                                     提高+/省选−
+CF1149C	Tree Generator™	                                                                                                    省选/NOI−
+CF1209G2	Into Blocks (hard version)	                                                                                    NOI/NOI+/CTSC
+CF1603D	Artistic Partition	                                                                                                    NOI/NOI+/CTSC
+CF1326E	Bombs	                                                                                                                    省选/NOI−
+CF1252G	Performance Review	                                                                                                    提高+/省选−
+CF1418G	Three Occurrences	                                                                                                    省选/NOI−
+CF343D	Water Tree	                                     线段树  树链剖分                                       提高+/省选−
+P3776	[APIO2017] 斑斓之地	                                                                                                     NOI/NOI+/CTSC
+
+
+数据结构-权值线段树
+
+
+CF12D	Ball	                                                       树状数组  排序                                          提高+/省选−
+AT_joisc2016_h	回転寿司	                                       分块                                                         NOI/NOI+/CTSC
+CF1045G	AI robots	                                                       线段树  树套树  概率论                               省选/NOI−
+CF1705E	Mark and Professor Koro	                       线段树  二分  位运算                                   提高+/省选−
+
+
+数据结构-可持久化线段树
+
+
+
+「HDU4348」To The Moon
+P4137	Rmq Problem / mex	                                      莫队  线段树  RMQ  可持久化  分块              省选/NOI−
+P2839	[国家集训队] middle	                                       二分  可持久化线段树                                  省选/NOI−
+CF1148H	Holy Diver	                                                                                                                        NOI/NOI+/CTSC
+CF464E	The Classic Problem	                                     最短路  可持久化线段树  哈希, hash                NOI/NOI+/CTSC
+CF840D	Destiny	                                                                                                                        省选/NOI−
+CF484E	Sign on Fence	                                                                                                        省选/NOI−
+
+
+数据结构-线段树动态开点与线段树合并
+
+
+CF600E	Lomsat gelral	搜索  线段树  树上启发式合并  启发式搜索  众数  概率论                          省选/NOI−
+P2824	[HEOI2016/TJOI2016] 排序	                     线段树  二分  排序                                           省选/NOI−
+P8496	[NOI2022] 众数	                                                                                                           省选/NOI−
+CF893F	Subtree Minimum Query	                        可持久化线段树                                             省选/NOI−
+CF671D	Roads in Yusland	                                                                                                            NOI/NOI+/CTSC
+CF490F	Treeland Tour	                                                                                                           提高+/省选−
+P4215	踩气球	                                                           线段树                                                      省选/NOI−
+P6041	「ACOI2020」布丁暗杀计划	                                                                                           提高+/省选−
+P5298	[PKUWC2018] Minimax	                线段树  树形 dp  概率论                                         省选/NOI−
+
+
+数据结构-线段树优化建图
+
+
+P5025	[SNOI2017] 炸弹	                              线段树  强连通分量                                                        省选/NOI−
+P3588	[POI2015] PUS	                             线段树  记忆化搜索  拓扑排序                                           省选/NOI−
+CF786B	Legacy	                                             线段树  图论建模  最短路                                                 省选/NOI−
+P6348	[PA2011] Journeys	                             线段树  最短路                                                                省选/NOI−
+P8021	[ONTAK2015] Bajtman i Okrągły Robin	线段树  图论建模  费用流                                              省选/NOI−
+P4473	[国家集训队] 飞飞侠	                                线段树  并查集  最短路                                                  省选/NOI−
+CF793G	Oleg and chess	                                                                                                                  省选/NOI−
+
+
+数据结构-扫描线
+
+
+「POJ2482」窗内的星星
+「POJ2464」Brownie Points II
+P5976	[CEOI2008] Dominance	                                                                                                     普及+/提高
+P4605	[SDOI2018] 物理实验	                              平衡树  前缀和  向量                                                         NOI/NOI+/CTSC
+P6818	[PA2013] Działka	                                                                                                                     NOI/NOI+/CTSC
+P9120	[春季测试 2023] 密码锁	                                                                                                     省选/NOI−
+P3755	[CQOI2017] 老C的任务	               离散化  cdq 分治  可持久化线段树                                      省选/NOI−
+CF1041E	Tree Reconstruction	                                 构造                                                                               提高+/省选−
+
+
+数据结构-线段树分治
+
+
+CF576E	Painting Edges	                                  线段树  分治  栈                                                                省选/NOI−
+P5227	[AHOI2013] 连通图	                                  线段树  并查集  Link-Cut Tree,LCT                                     省选/NOI−
+CF1140F	Extending Set of Points	                                                                                                         省选/NOI−
+P4246	[SHOI2008] 堵塞的交通	                  线段树  递归                                                                     省选/NOI−
+CF1442D	Sum	                                                                                                                                          省选/NOI−
+P4585	[FJOI2015] 火星商店问题	              线段树  分治  可持久化                                                           省选/NOI−
+P3733	[HAOI2017] 八纵八横    	                线段树  分治  线性基                                                            省选/NOI−
+P5214	[SHOI2014] 神奇化合物	                                                                                                          提高+/省选−
+P5416	[CTSC2016] 时空旅行	                                                                                                                          NOI/NOI+/CTSC
+
+
+数据结构-线段树上二分
+
+
+P5579	[PA2015] Siano	                                                                                                                             提高+/省选−
+P5986	[PA2019] Szprotki i szczupaki	                                                                                                             省选/NOI−
+P8518	[IOI2021] 分糖果	                                                                                                                              NOI/NOI+/CTSC
+CF1705E	Mark and Professor Koro	               线段树  二分  位运算                                                                 提高+/省选−
+P6619	[省选联考 2020 A/B 卷] 冰火战士	                线段树  二分  树状数组  离散化                                                 省选/NOI−
+
+
+数据结构-李超线段树「选做」
+
+
+CF932F	Escape Through Leaf	                                    线段树  树形 dp                                                                     省选/NOI−
+CF631E	Product Sum	                                                                                                                                省选/NOI−
+P4097	【模板】李超线段树 / [HEOI2013] Segment   贪心  线段树  递归  分块  李超线段树                                         省选/NOI−
+P4655	[CEOI2017] Building Bridges	                   动态规划,dp  线段树  cdq 分治  斜率优化                                   省选/NOI−
+P8987	[北大集训 2021] 简单数据结构	                                                                                                                 NOI/NOI+/CTSC
+CF1175G	Yet Another Partiton Problem	                                                                                                                 NOI/NOI+/CTSC
+CF671E	Organizing a Race	                                                                                                                                 NOI/NOI+/CTSC
+
+
+数据结构-并查集
+
+
+CF200A	Cinema	                                                                                                                                                  省选/NOI−
+CF576E	Painting Edges	                                            线段树  分治  栈                                                               省选/NOI−
+P3295	[SCOI2016] 萌萌哒	                                       并查集  枚举  st表                                                                 省选/NOI−
+AT_agc016_d	[AGC016D] XOR Replace	                                                                                                   省选/NOI−
+「POJ1456」Supermarket
+CF1670C	Where is the Pizza?	                                                                                                                                  普及/提高−
+P6830	[IOI2020] 连接擎天树	                                          深度优先搜索,DFS                                                              提高+/省选−
+P3631	[APIO2011] 方格染色	                                      数学  并查集  枚举  位运算                                                      省选/NOI−
+AT_abc131_f	[ABC131F] Must Be Rectangular!	                                                                                  提高+/省选−
+
+
+数据结构-扩展域并查集
+
+
+P9869	[NOIP2023] 三值逻辑	                                        并查集  二分图  基环树                                                             普及+/提高
+「 POJ2912」石头剪子布/Rochambeau
+P5787	二分图 /【模板】线段树分治	                                                                                                                     提高+/省选−
+
+
+数据结构-带权并查集
+
+
+CF1850H	The Third Letter	                                                                                                                                           普及/提高−
+CF1290C	Prefix Enlightenment	                                                                                                                           省选/NOI−
+
+
+
+数据结构-可持久化并查集
+
+
+P3402	可持久化并查集	                                            并查集  可持久化                                                                            省选/NOI−
+P4768	[NOI2018] 归程	                                           并查集  Kruskal 重构树  最短路  可持久化                                         省选/NOI−
+CF1444C	Team-Building	                                                                                                                                                 省选/NOI−
+
+
+
+数据结构-Trie
+
+
+UVA644	Immediate Decodability	                          字符串  字典树,Trie                                                                        普及+/提高
+
+
+
+数据结构-01Trie
+
+
+P10471	最大异或对 The XOR Largest Pair	           字典树,Trie                                                                                         普及/提高−
+AT_agc029_b	[AGC029B] Powers of two	                                                                                                                普及+/提高
+
+
+
+数据结构-可持久化Trie
+
+
+P10690	Fotile 模拟赛 L	                                              分块                                                                                             省选/NOI−
+CF916D	Jamie and To-do List	                                            线段树  可持久化线段树  可持久化                                                      省选/NOI−
+SP11444	MAXOR - MAXOR	                                                                                                                                                   省选/NOI−
+
+
+
+数据结构-笛卡尔树
+
+
+P3246	[HNOI2016] 序列	                                       前缀和  栈  st表                                                                               省选/NOI−
+P6453	[COCI2008-2009#4] PERIODNI	                                                                                                                             提高+/省选−
+P3592	[POI2015] MYJ	                                        动态规划,dp                                                                                      省选/NOI−
+P9197	[JOI Open 2016] 摩天大楼	                         动态规划,dp                                                                                   NOI/NOI+/CTSC
+
+
+数据结构-平衡树「fhq treap」
+
+
+P4309	[TJOI2013] 最长上升子序列	                       线段树  平衡树  树状数组                                                                      省选/NOI−
+P3960	[NOIP2017 提高组] 列队	                         线段树  平衡树  树状数组                                                                    省选/NOI−
+P4200	千山鸟飞绝	                                         平衡树                                                                                               省选/NOI−
+P3991	[BJOI2017] 喷式水战改	                         动态规划,dp  平衡树  分治                                                                   省选/NOI−
+P4146	序列终结者	                                         模拟  线段树  平衡树                                                                           省选/NOI−
+
+
+数据结构-树链剖分「重链」
+
+
+P4211	[LNOI2014] LCA	                                        线段树  最近公共祖先,LCA  树链剖分  差分                                                   省选/NOI−
+P3979	遥远的国度	                                        线段树  倍增  最近公共祖先,LCA  树链剖分                                                  省选/NOI−
+P3241	[HNOI2015] 开店	                                        分治  最近公共祖先,LCA  动态树                                                                    省选/NOI−
+P2486	[SDOI2011] 染色	                                       线段树  动态树  树链剖分                                                                             省选/NOI−
+P7735	[NOI2021] 轻重边	                                                                                                                                                        省选/NOI−
+P3976	[TJOI2015] 旅游	                                        线段树  树链剖分  Link-Cut Tree,LCT                                                           省选/NOI−
+
+
+数据结构-树链剖分「长链」
+
+
+CF1009F	Dominant Indices	                                          动态规划,dp  树上启发式合并  枚举                                                              省选/NOI−
+P5904	[POI2014] HOT-Hotels 加强版	                                                                                                                                            省选/NOI−
+P10641	BZOJ3252 攻略	                                          贪心  线段树  左偏树  树链剖分                                                                     提高+/省选−
+P4292	[WC2010] 重建计划	                                           点分治  单调队列  分治                                                                                NOI/NOI+/CTSC
+CF161D	Distance in Tree	                                          点分治  分治  概率论                                                                                     普及+/提高
+P2993	[FJOI2014] 最短路径树问题	                                                                                                                                            省选/NOI−
+
+
+数据结构-树状数组
+
+
+AT_arc101_b	[ABC107D] Median of Medians	                                                                                                                   提高+/省选−
+AT_arc101_d	[ARC101F] Robots and Exits	                                                                                                                   省选/NOI−
+P4203	[NOI2008] 糖果雨	                                                                                                                                                   NOI/NOI+/CTSC
+「HDU3333」Turing Tree
+P2345	[USACO04OPEN] MooFest G	                              模拟  树状数组  cdq 分治                                                                  普及/提高−
+
+
+图论-最短路
+
+
+P3110	[USACO14DEC] Piggy Back S	                         广度优先搜索,BFS  最短路                                                                          提高+/省选−
+P8060	[POI2003] Sums	                                         最短路  中国剩余定理,CRT                                                                          提高+/省选−
+P2933	[USACO09JAN] The Baric Bovine G	                                                                                                                         提高+/省选−	
+P1606	[USACO07FEB] Lilypad Pond G	                          图论  广度优先搜索,BFS  最短路                                                                 省选/NOI−
+P4049	[JSOI2007] 合金	                                           图论建模  最短路  凸包                                                                             省选/NOI−
+P4442	[COCI2017-2018#3] Portal	                          贪心  最短路                                                                                             省选/NOI−
+P5977	[CEOI2008] Fence	                                          动态规划,dp  计算几何  最短路  凸包                                                           省选/NOI−
+P5100	[JOI 2017 Final] 足球	                                          图论  最短路                                                                                             省选/NOI−
+P6545	[CEOI2014] The Wall	                                           最短路                                                                                                     NOI/NOI+/CTSC
+P3275	[SCOI2011] 糖果	                                          最短路  差分约束                                                                                       提高+/省选−
+P3831	[SHOI2012] 回家的路	                                          图论  最短路                                                                                             提高+/省选−
+P3953	[NOIP2017 提高组] 逛公园	                          搜索  记忆化搜索  最短路                                                                           省选/NOI−
+P4042	[AHOI2014/JSOI2014] 骑士游戏	                          图论  最短路                                                                                              提高+/省选−
+CF1005F	Berland and the Shortest Paths	                           最短路                                                                                                     省选/NOI−
+CF715B	Complete The Graph	                                          枚举  最短路                                                                                              提高+/省选−
+CF986F	Oppa Funcan Style Remastered	                                                                                                                                          省选/NOI−
+CF1149D	Abandoning Roads	                                                                                                                                                          NOI/NOI+/CTSC
+CF1495F	Squares	                                                                                                                                                                          NOI/NOI+/CTSC
+CF360E	Levko and Game	                                                                                                                                                          NOI/NOI+/CTSC
+CF843D	Dynamic Shortest Path	                           广度优先搜索,BFS  剪枝  最短路                                                                  NOI/NOI+/CTSC
+CF1528D	It's a bird! No, it's a plane! No, it's AaParsa!	                                                                                                          提高+/省选−
+CF1450E	Capitalism	                                                                                                                                                                          省选/NOI−
+CF241E	Flights	                                                                                                                                                                           省选/NOI−
+
+
+图论-生成树
+
+
+P8207	[THUPC2022 初赛] 最小公倍树	                      图论建模  生成树                                                                                            提高+/省选−
+CF1707C	DFS Trees	                                                      生成树  最近公共祖先,LCA  差分                                                                      提高+/省选−
+CF609E	Minimum spanning tree for each edge	      生成树  树链剖分                                                                                            提高+/省选−
+CF1120D	Power Tree	                                      生成树                                                                                                           省选/NOI−
+「POJ 2728」沙漠之王
+P5994	[PA2014] Kuglarz	                                                                                                                                                           普及+/提高
+P3623	[APIO2008] 免费道路	                                      并查集  背包  生成树                                                                                       省选/NOI−
+P3206	[HNOI2010] 城市建设	                                      分治  生成树  Link-Cut Tree,LCT                                                                      省选/NOI−
+P4208	[JSOI2008] 最小生成树计数	                      并查集  生成树  素数判断,质数,筛法  高斯消元                                                    省选/NOI−
+P3280	[SCOI2013] 摩托车交易	                      模拟  倍增  生成树                                                                                           省选/NOI−
+
+
+
+图论-图的连通性
+
+
+
+P8867	[NOIP2022] 建造军营                                        树形 dp 强连通分量  Tarjan  容斥                                                                    提高+/省选−
+CF487E	Tourists	                                                       线段树  强连通分量  树链剖分  圆方树                                                               省选/NOI−                                                                                                                                         省选/NOI−
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

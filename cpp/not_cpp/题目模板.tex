@@ -1,0 +1,493 @@
+\documentclass[UTF8,a4paper]{ctexart}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}     
+\usepackage{xeCJKfntef}                     
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{mathrsfs}
+\usepackage{framed}
+\usepackage[colorlinks,linkcolor=blue]{hyperref} 
+\newcommand\filename[1]{\emph{\textbf{#1}}}
+\newcommand\udot[1]{\textbf{\color{black}\CJKunderdot{\color{black}#1}}} % 第一个 color 调整加粗字体下着重号的颜色
+\newcommand\newprob[2]{
+	\newpage
+	\pagestyle{fancy}
+	\lhead{CyreneOI Round3 Div.3} \rhead{#1（#2）}
+	\cfoot{第 \thepage 页 \qquad 共 \pageref{LastPage} 页}
+	\phantomsection
+	\addcontentsline{toc}{section}{#1（#2）}
+	\begin{center}
+		\LARGE
+		\textbf{#1（}#2\textbf{）}
+	\end{center}
+	\large
+	%
+	\textbf{【题目背景】}
+	\phantomsection
+	\addcontentsline{toc}{subsection}{【题目背景】}
+}
+\newcommand\para[1]{
+	$ $ \\ 
+	\textbf{【#1】}
+	\phantomsection
+	\addcontentsline{toc}{subsection}{【#1】}
+}
+\newcommand\sample[2]{
+	$ $ \\ 
+	\textbf{【样例} #1\textbf{#2】}
+	\phantomsection
+	\addcontentsline{toc}{subsection}{【样例 #1 #2】}
+}
+\lstset{
+	basicstyle={      
+		\color{black}
+		\fontspec{YaHei Consolas Hybrid}
+	},
+	keywordstyle={
+		\color{blue}
+		\fontspec{YaHei Consolas Hybrid}
+	},
+	numberstyle={
+		\color{gray}
+		\texttt
+	},
+	rulecolor=\color{blue},
+	numbers=left,                               
+	frame=single,                            
+	% frameround=tttt,
+	morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{YaHei Consolas Hybrid}
+\geometry{left=2.52cm,right=2.52cm,top=2.5cm,bottom=2.5cm}
+\begin{document}
+	\pagestyle{fancy}
+	\lhead{CyreneOI Round3 Div.3} \rhead{}
+	\cfoot{第 \thepage 页 \qquad 共 \pageref{LastPage} \color{black} 页}
+	\thispagestyle{empty}
+	\addcontentsline{toc}{section}{注意事项}
+	\begin{center}
+		\Huge
+		\textbf{CyreneOI Round3 Div.3}
+		\\
+		\Huge 
+		MSANPU OI Contest
+		\\
+		\huge
+		\textit{$\mathrm{Qaaxaap}$}
+		\\
+		\Large
+		\textbf{时间：}2025\textbf{年}7\textbf{月}25\textbf{日} 14:00 $\sim$ 18:00
+		\\
+	\end{center}
+	\small
+	\begin{center}
+		\begin{tabular}{|p{3cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|}
+			\hline
+			题目名称 & Tribios &SkeMma720 & EpieiKeia216&Hyacinthia & NeiKos496 &PhiLia093\\
+			\hline
+			题目类型 & 传统型 & 传统型 & 传统型 & 传统型&传统型&传统型 \\
+			\hline
+			目录 & \texttt{Tribios} & \texttt{Anaxagoras} & \texttt{Castorice} & \texttt{Hyacinthia} &\texttt{Phainon}&\texttt{Cyrene}\\
+			\hline
+			可执行文件名 & \texttt{Tribios} & \texttt{Anaxagoras} & \texttt{Castorice} & \texttt{Hyacinthia} &\texttt{Phainon}&\texttt{Cyrene}\\
+			\hline
+			输入文件名(.in) & \texttt{Tribios} & \texttt{Anaxagoras} & \texttt{Castorice} & \texttt{Hyacinthia} &\texttt{Phainon}&\texttt{Cyrene}\\
+			\hline
+			输出文件名(.out) & \texttt{Tribios} & \texttt{Anaxagoras} & \texttt{Castorice} & \texttt{Hyacinthia} &\texttt{Phainon}&\texttt{Cyrene}\\
+			\hline
+			每个测试点时限 & 1.0 秒 & 1.0 秒 & 1.0 秒 & 2.0 秒 &1.0秒&1.0秒\\
+			\hline
+			内存限制 & 256 MiB & 256 MiB & 256 MiB & 256 MiB&256MiB&256MiB \\
+			\hline
+			测试点数目 & 10 & 10 & 20 & 20&10&10 \\
+			\hline
+			测试点是否等分 & 是 & 是 & 是 & 是 &是&是\\
+			\hline
+			是否使用子任务 &否&是&否&是&是&否\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\large
+	提交源程序文件名(.cpp)
+	\small
+	\begin{center}
+		\begin{tabular}{|p{3cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|}
+			\hline
+			对于 C++ 语言 & \texttt{Tribios} & \texttt{Anaxagoras} & \texttt{Castorice} & \texttt{Hyacinthia} &\texttt{Phainon}&\texttt{Cyrene}\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\large
+	编译选项
+	\small
+	\begin{center}
+		\begin{tabular}{|p{3cm}|p{12.4cm}<\centering|}
+			\hline
+			对于 C++ 语言 & \texttt{-O2 -std=c++14 -static } \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\large
+	\udot{注意事项（请仔细阅读）} 
+	\\
+	\indent
+	1. 本场比赛为阶段学习评估，总体难度较小，与 Codeforces-Div2.5 难度相近。\par
+	2. 由于评测机性能原因，评测时题目时间限制可能会进行调整。\par
+	3. 时间限制、空间限制分别不小于标准程序运行时间和内存使用的 1.5 倍、1 倍。\par
+	4. 本场比赛仅支持 C++14 语言。\par
+	5. \udot{不保证难度有序。} 预估难度：绿橙黄 \par
+	6. 本校模拟赛题不得外传，包括但不限于：私自拷题，在任何网站记录题目信息（包括洛谷非公开云剪贴板，非公开题目等），向在线 AI 询问题目，或任何可能造成其他人员获取题目的操作。\par
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\newprob{奇物}{thing.cpp} \\ \indent
+	开拓者正在黑塔空间站整理奇物，需要你的帮助。
+	\para{题目描述} \\ \indent
+	空间站里有 $n$ 个有序的奇物，开拓者需要把它们放进任意多层架子中（不改变原来的相对顺序），并且在每个奇物上标上架子层号（奇物上仅有层号，无其它数字）。
+	
+	定义整齐度为所有奇物上写的数字的异或值。
+	
+	你需要让整齐度最大。
+	\para{输入格式} \\ \indent
+	从文件 \filename{thing.in} 中读入数据。
+	本题输入包含多组数据。\par
+	
+	第一行，一个整数 $T$，表示数据组数。对于每组数据：
+	
+	仅一行，一个正整数 $n$，表示序列长度。
+	\para{输出格式} \\ \indent
+	输出到文件 \filename{thing.out} 中。\par
+	对每个数据输出一行，表示答案。\par
+	\sample{1}{输入}
+	\begin{lstlisting}
+4
+2
+3
+7
+8
+	\end{lstlisting}
+	\sample{1}{输出}
+	\begin{lstlisting}
+3
+2
+7
+8	
+	\end{lstlisting}
+	\sample{1}{解释} \\ \indent
+	下文假定奇物上的数字组成的数组为 $a$ 数组。\par
+	$n=2$ 的时候，可能得到的 $a$ 是 $[1,2]$；$n=3$ 的时候，可能得到的 $a$ 是 $[1,1,2]$；\par $n=7$ 的时候，可能得到的 $a$ 是 $[1,2,2,3,4,4,5]$。\par
+	\sample{2}{输入}
+	\begin{lstlisting}
+2
+500000000000
+100000000000000000
+	\end{lstlisting}
+	\sample{2}{输出}
+	\begin{lstlisting}
+549755813887
+144115188075855871
+	\end{lstlisting}
+	\para{数据范围} \\ \indent
+	对于所有数据，保证 $1\le T\le 10^5$，$1\le n \le 10^{18}$。
+	
+	各测试点特殊限制如下：
+	\begin{center}
+	\begin{tabu}{c|c|c}
+		\tabucline[2pt]{-}
+		测试点编号 & $n \leq$ & 特殊性质 \\ 	\tabucline[1.2pt]{-}
+		$1$ & $10$ & 无 \\ \hline
+		$2$ &$ 50  $& 无 \\ \hline
+		$3$ &$ 400 $& 无 \\ \hline
+		$4$ &$10^{18}$&n 为二的非负整数次幂\\ \hline
+		$5$ &$10^{18}$&无\\ 	\tabucline[2pt]{-}
+	\end{tabu}
+	\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\newprob{矿车}{car.cpp}\par% \\ \indent
+	在冰天雪地的『雅利洛-VI』，人们依赖『地髓』这种能源。为了更好地开采地髓矿石，开拓者要帮忙修建运输铁路。
+	\para{题目描述} \\ \indent
+	下层区有 $n$ 个采矿点分布在一条铁路上，其中第 $i$ 个的位置是 $x_i$。转运中心处在 $X$ 处，你将从这里出发。你需要找到一个站距 $d$，使得通过任意多次如下的移动，可以到达所有采矿点。
+	\begin{itemize}
+		\item{1.}从当前位置 $y$ 出发，沿着铁路到 $y+d$ 的位置
+		\item{2.}从当前位置 $y$ 出发，沿着铁路到 $y-d$ 的位置
+	\end{itemize}
+	为了节省宝贵的材料，你需要让 $d$ 最大，输出这个最大的 $d$。
+	\para{输入格式} \\ \indent
+	从文件 \filename{car.in} 中读入数据。 \par
+	第一行两个整数 $n,X$\par
+	第二行 $n$ 个整数，第 $i$ 个整数表示 $x_i$
+	\para{输出格式} \\ \indent
+	输出到文件 \filename{car.out} 中。 \par
+	一行一个整数，表示最大站距。
+	
+	\sample{1}{输入}
+	\begin{lstlisting}
+33
+1 7 11
+	\end{lstlisting}
+	
+	\sample{1}{输出}
+	\begin{lstlisting}
+2
+	\end{lstlisting}
+	
+	\sample{2}{输入}
+	\begin{lstlisting}
+3 81
+33 105 57
+	\end{lstlisting}
+	
+	\sample{2}{输出}
+	\begin{lstlisting}
+24
+	\end{lstlisting}
+	
+	
+	\para{数据范围} \\ \indent
+	对于所有测试点，满足 $1\leq n\leq 10^5$，$1\leq X,x_i\leq 10^9$，$X,x_i$ 互不相同。
+	\begin{center}
+	\begin{tabu}{c|c|c}
+		\tabucline[2pt]{-} 
+		测试点编号 & $n$ & $X,x_i$ \\
+		\tabucline[1.2pt]{-} 
+		$1\sim 3$ & $=1$ & \multirow{5}*{$\leq 1000$}\\ \cline{1-2}
+		$4$ & $=2$ & \\\cline{1-2}
+		$5\sim 7$ & $\leq 100$ &\\\cline{1-2}
+		$8 \sim 9$ & $\leq 2\time 10^4$ &\\\cline{1-2}
+		$10$ & $\leq 10^5$ &\\
+		\tabucline[2pt]{-} 
+	\end{tabu}
+	\end{center}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\newprob{星槎}{boat.cpp} \\ \indent
+	天舶司因为办事效率太低收到许多投诉。驭空公务繁忙，请开拓者来帮忙调整。
+	\para{题目描述} \\ \indent
+	天舶司的人员结构可以用一棵无根树描述。\par	
+	你需要调整天舶司的人员，使得这棵树的直径最小。\par
+	一次调整所做的事如下：\par
+	
+	\begin{itemize}
+		\item 选择树上两个节点 $s$ 和 $t$，假设从 $s$ 到 $t$ 的简单路径上的顶点序列为 $v_0, v_1, \dots, v_k$ ，其中 $v_0 = s$ 和 $v_k = t$ 。
+		\item 删除路径上的所有边。换句话说，删除边 $(v_0, v_1), (v_1, v_2), \dots, (v_{k-1}, v_k)$。
+		\item 将顶点 $v_1, v_2, \dots, v_k$ 直接连到 $v_0$ 。换句话说，添加边 $(v_0, v_1), (v_0, v_2), \dots, (v_0, v_k)$ 。
+	\end{itemize}\par
+	可以看出，操作后的仍然是一棵树。\par
+	但是，毕竟是帮人做事，开拓者希望在满足要求的情况下，操作次数最少。
+	\para{输入格式}  \indent\par
+	从 \filename{boat.in} 中读入
+	
+	每个测试包含多个测试用例。第一行包含测试用例的数量 $t$。\par 测试用例说明如下。
+	
+	每个测试用例的第一行都包含一个整数 $n$ 为树中顶点的个数。
+	
+	每个测试用例的下面 $n-1$ 行描述了树。\par 每一行都包含两个整数 $u$ 和 $v$，表示顶点 $u$ 和 $v$ 之间的一条边。
+	
+	保证所有测试用例中 $n$ 的总和不超过 $2 \cdot 10^5$ 。
+	\para{输出格式} \\ \indent
+	输出到文件 \filename{boat.out} 中。\par
+	对每个测试用例，输出一行，即使得直径最小所需要的最少操作次数。
+	\sample{1}{输入}\\
+	\begin{lstlisting}
+4
+4
+1 2
+1 3
+2 4
+2
+2 1
+4
+1 2
+2 3
+2 4
+11
+1 2
+1 3
+2 4
+3 5
+3 8
+5 6
+5 7
+7 9
+7 10
+5 11
+	\end{lstlisting}
+	
+	\sample{1}{输出}
+	\begin{lstlisting}
+1
+0
+0
+4
+
+	\end{lstlisting}
+	
+	\para{数据范围}  \indent\par
+	共有 $20$ 个测试点，开启捆绑测试。
+	\begin{center}
+	\begin{tabu}{c|c|c|c}
+		\tabucline[2pt]{-}
+		捆绑包编号 & 测试点编号 & $\Sigma n\leq$ & 特殊性质 \\
+		\tabucline[1.2pt]{-}
+		$1$ & $1\sim 3$ & $100$ & 无 \\ \hline
+		$2$ & $4\sim 6$ & $1000$ & 无 \\ \hline
+		$3$ & $7\sim 8$ & $2\times 10^5$ & $A$ \\ \hline
+		$4$ & $9\sim 10$ & $2\times 10^5$ & $B$ \\ \hline
+		$5$ & $11\sim 20$ & $2\times 10^5$ & 无 \\ 
+		\tabucline[2pt]{-}
+	\end{tabu}
+	\end{center}\par
+	特殊性质 $A$：树是菊花图.\par	
+	特殊性质 $B$：树是一条链.\par
+	数据保证给出的是一棵树。
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\newprob{Hyacinthia}{Hyacinthia} \\ \indent
+	「在彩虹桥的尽头，天空之子将缝补晨昏。」
+	\para{题目描述} \\ \indent
+	晨昏之眼的地图可以描述成一颗以 $1$ 为根，$n$ 个节点的树，第 $i$ 个节点上有 $a_i$ 个泰坦眷属。每个泰坦眷属可以选择向任意子节点走，直到走到叶子节点为止。\par
+	每个叶子节点的承载能力都有限，为了缓解晨昏之眼的压力，你要使泰坦眷属最多的叶子节点的眷属个数尽量少，输出这个数字。
+	
+	\para{输入格式} \\ \indent
+	从文件 \filename{Hyacinthia.in} 中读入数据。 \par
+	第一行一个正整数 $n$ \par
+	接下来一行 $n-1$ 个正整数，第 $i$ 表示节点 $i+1$ 的父亲\par
+	接下来一行 $n$ 个正整数 $a_1,a_2,\dots,a_n$ 
+	\para{输出格式} \\ \indent
+	输出到文件 \filename{Hyacinthia.out} 中。 \par
+	一行一个整数表示人最多的叶子节点的最少人数
+	
+	\sample{1}{输入}
+	\begin{lstlisting}
+		3
+		1 1 
+		3 1 2
+	\end{lstlisting}
+	
+	\sample{1}{输出}
+	\begin{lstlisting}
+		3
+	\end{lstlisting}
+	
+	\sample{1}{解释} \\ \indent
+	$2$ 号节点最后具有 $1$ 号节点的 $2$ 个人，$2$ 号节点的 $1$ 个人。\par
+	$3$ 号节点最后具有 $1$ 号节点的 $1$ 个人，$3$ 号节点的 $2$ 个人。
+	
+	
+	\para{数据范围} \\ \indent
+	\begin{center}
+		\begin{tabular}{ccccc}
+			\hline
+			subtask & $n,m\leq$ & $0\leq a_i\leq$ & 特殊性质 &子任务分值\\
+			\hline
+			$1$ & $5$ & $5$ &无 & $10$ \\%×≤
+			$2$ & $200$ & $10^9$ &无& $10$ \\
+			$3$ & $2000$ & $10^9$&无 & $30$\\
+			$4$ & $2\times 10^5$ &$10^9$&图是链 & $10$\\
+			$5$ & $2\times 10^5$ &$10^9$&图是菊花& $10$ \\
+			$6$ & $2\times 10^5$ &$10^9$&无& $30$ \\
+			\hline
+		\end{tabular}
+	\end{center}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\newprob{NeiKos496}{Phainon} \\ \indent
+	「汝将肩负骄阳，直至灰白的黎明显著」
+	\para{题目描述} \\ \indent
+	NeiKos096 开始了永劫回归\par
+	但是永劫回归对精神磨损严重，容易被「毁灭」冲毁理性\par
+	开始时，NeiKos096 可以将理性值设置为 $[L,R]$ 中的任意正整数\par
+	每次轮回末，理性值 $i$ 变为 $n$ 除以 $i$ 的余数\par
+	当理性值为 $0$ 时，认为 NeiKos096 失去了理性\par
+	你的任务是对于给定的 $n$，以及 $T$ 组 $L$，$R$，告诉 NeiKos096 最多能保持多少个轮回的理性。
+	\para{输入格式} \\ \indent
+	从文件 \filename{Phainon.in} 中读入数据。 \par
+	第一行，两个正整数，代表 $n, T$。\par
+	第二行至第 $T + 1$ 行，每行两个正整数，代表每一组 $L, R$。
+	\para{输出格式} \\ \indent
+	输出到文件 \filename{Phainon.out} 中。 \par
+	
+	共 $T$ 行，每行一个正整数，代表每次询问的结果。
+	
+	\sample{1}{输入}
+	\begin{lstlisting}
+		9 1 
+		1 8
+	\end{lstlisting}
+	
+	\sample{1}{输出}
+	\begin{lstlisting}
+		3
+	\end{lstlisting}
+	
+	\sample{1}{解释} \\ \indent
+	令永劫回归开始时 $i=5$ ,\par 则此时第一轮回末 $i=4$ ,\par 第二轮回末 $i=1$ ,\par 第三轮回末 $i=0$。\par 所以，NeiKos096 在第三轮回末之前都可以保持理性。
+	
+	
+	\para{数据范围} \\ \indent
+	本题启用捆绑测试
+	\begin{center}
+		\begin{tabular}{ccccc}
+			\hline
+			subtask & 数据点 & $n$ & $T$ & 特殊性质 \\
+			\hline
+			$1$ & $1$ & $\leq 2 \times 10^2$ &  $\leq3 \times 10^3$ & $A$ \\%×≤
+			$2$ & $2-3$ & $\leq 2 \times 10^2$ &  $\leq3 \times 10^3 $& 无 \\
+			$3$ & $4$ & $\leq 5 \times 10^5 $&$ \leq 5\times10^5$ & $A$ \\
+			$4$ & $5-10$ &$\leq  5 \times 10^5 $& $\leq 5 \times 10^5$ & 无 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	特殊性质 $A$: $L = 1$。
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\newprob{PhiLia093}{Cyrene} \\ \indent
+	「当然, 这一定是个不同以往的浪漫故事…… 你也是这么想的，对吧♪」
+	\para{题目描述} \\ \indent
+	PhiLia093 凭借岁月的权柄与 NeiKos496 一起进行永劫回归。\par
+	具体而言，一条时间线上面有 $n$ 件事，事件种类为 $a_i$，其中 $1\leq a_i\leq n$\par
+	第 $i$ 次永劫回归结束时刚经历完第 $p_i$ 件事，\par 
+	每次永劫回归开始都会回到第 $1$ 件事，\par
+	这样的永劫回归进行了 $m$ 次，\par
+	最后一次，也就是第 $m+1$ 次永劫回归，经历了完整的 $n$ 件事。\par
+	设种类为 $i$ 的事件经历了 $z_i$ 次，\par
+	现在 PhiLia093 想知道 $(z_1\times 1) \oplus (z_2\times 2) \oplus \dots \oplus (z_n\times n)$
+	
+	\para{输入格式} \\ \indent
+	从文件 \filename{Cyrene.in} 中读入数据。 \par
+	第一行一个整数 $n$。\par
+	第二行 $n$ 个整数 $a_i$。\par
+	第三行一个整数 $m$。\par
+	第四行 $m$ 个整数 $p_i$。 
+	\para{输出格式} \\ \indent
+	输出到文件 \filename{Cyrene.out} 中。 \par
+	输出一行一个整数，含义如题目所示。
+	
+	\sample{1}{输入}
+	\begin{lstlisting}
+		5
+		1 2 3 4 1
+		3
+		2 1 2
+	\end{lstlisting}
+	
+	\sample{1}{输出}
+	\begin{lstlisting}
+		4
+	\end{lstlisting}
+	
+	\sample{1}{解释} \\ \indent
+	种类为 $1\sim 5$ 的事件出现次数为 $5,3,1,1,0$。
+	
+	\para{数据范围} \\ \indent
+	对于 $100\%$ 的数据，$1\leq n\leq 10^6 ,0\le m\le 10^6,1\le a_i,p_i\le n$。  \par 
+	对于 $40\%$ 的数据，$n,m\le 10^3$。 \par 
+	对于 $60\%$ 的数据，$n,m\le 10^5$。 \par 
+	对于另外 $20\%$ 的数据，$m=0$。 \par 
+\end{document}

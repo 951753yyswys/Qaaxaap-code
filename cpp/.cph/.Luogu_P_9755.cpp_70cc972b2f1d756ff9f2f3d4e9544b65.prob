@@ -1,0 +1,1 @@
+{"name":"Luogu - P9755","url":"https://www.luogu.com.cn/problem/P9755","memoryLimit":524288,"timeLimit":1000,"tests":[{"id":1761635945143,"input":"4\n12 1 1\n2 4 -1\n10 3 0\n7 10 -2\n1 2\n1 3\n3 4","output":"5\n"}],"group":"luogu","srcPath":"d:\\code\\cpp\\Luogu_P_9755.cpp"}

@@ -1,0 +1,181 @@
+#include<bits/stdc++.h>
+#define int long long 
+using namespace std;
+namespace luuia {const int __SIZE=(1<<21)+1;
+char ibuf[__SIZE],*iS,*iT,obuf[__SIZE],*oS=obuf,*oT=oS+__SIZE-1,_c,qu[55];int __f,qr,_eof;
+#define Gc()(iS==iT?(iT=(iS=ibuf)+fread(ibuf,1,__SIZE,stdin),(iS==iT?EOF:*iS++)):*iS++)
+inline void flush(){fwrite(obuf,1,oS-obuf,stdout),oS=obuf;}inline void gc(char &x){x=Gc();}
+inline void pc(char x){*oS++=x;if(oS==oT)flush();}
+inline void pstr(const char *s){int __len=strlen(s);for(__f = 0;__f< __len;++__f)pc(s[__f]);}
+inline void gstr(char *s){for(_c=Gc();_c<32||_c>126||_c==' ';)_c=Gc();
+for(;_c>31&&_c<127&&_c!=' '&&_c!='\n'&&_c!='\r';++s,_c=Gc())*s=_c;*s=0;}
+template<class I>inline bool read(I &x){_eof=0;
+for(__f=1,_c=Gc();(_c<'0'||_c>'9')&&!_eof;_c=Gc()){if(_c=='-')__f=-1;_eof|=_c==EOF;}
+for(x=0;_c<='9'&&_c>='0'&&!_eof;_c=Gc())x=x*10+(_c&15),_eof|=_c==EOF;x*=__f;return !_eof;}
+template<class I>inline void print(I x){if(!x)pc('0');if(x<0)pc('-'),x=-x;
+while(x)qu[++qr]=x%10+'0',x/= 10;while(qr)pc(qu[qr--]);}struct Flusher_{~Flusher_(){flush();}}io_flusher_;
+}using luuia::pc;using luuia::gc;using luuia::pstr;using luuia::gstr;using luuia::read;using luuia::print;
+struct edge
+{
+	int to,nxt,w;
+} e[1000100],e1[1000100];
+int dep[1000100],dfn[1000010],siz[1000100],son[1000010],tops[1000010];
+int cnt,cnt1,cnt2,head[1001000],head1[1001000],fa[1000010],d[1000100];
+int sta[1000100],top,fm[1001000],dp[1000100],h[1000100];
+bool cmp(int x,int y)
+{
+	return dfn[x]<dfn[y];
+}
+inline void add(int u,int v,int w)
+{
+	cnt++;
+	e[cnt].to=v;
+	e[cnt].nxt=head[u];
+	e[cnt].w=w;
+	head[u]=cnt;
+}
+inline int dis(int u,int v)
+{
+	if(dep[u]<dep[v]) swap(u,v);
+	int ans=1000000000000000;
+	while(dep[u]!=dep[v])
+	{
+		ans=min(ans,fm[u]);
+		u=fa[u];
+	}
+	return ans;
+}
+inline void add1(int u,int v,int w);
+inline void mak(int u,int v)
+{
+	int dd=dis(u,v);
+	add1(u,v,dd);
+	add1(v,u,dd);
+}
+inline void add1(int u,int v,int w)
+{
+	cnt1++;
+	e1[cnt1].to=v;
+	e1[cnt1].nxt=head1[u];
+	e1[cnt1].w=w;
+	head1[u]=cnt1;
+}
+inline void dfs1(int u,int f)
+{
+	fa[u]=f;
+	dep[u]=dep[f]+1;
+	son[u]=-1;
+	int mx=-1;
+	siz[u]=1;
+	for(int i=head[u];i;i=e[i].nxt)
+	{
+		int v=e[i].to;
+		if(v==f) 
+		{
+			fm[u]=e[i].w;
+			continue;
+		}
+		dfs1(v,u);
+		siz[u]+=siz[v];
+		if(siz[v]>mx) mx=siz[v],son[u]=v;
+	}
+} 
+inline void dfs2(int u,int t)
+{
+	dfn[u]=++cnt2;
+	tops[u]=t;
+	if(son[u]==-1) return;
+	dfs2(son[u],t);
+	for(int i=head[u];i;i=e[i].nxt)
+	{
+		int v=e[i].to;
+		if(v==fa[u]||v==son[u]) continue;
+		dfs2(v,v);
+	}
+}
+inline int lca(int x,int y)
+{
+	while(tops[x]!=tops[y]) 
+	{
+		if(dep[tops[x]]>dep[tops[y]]) x=fa[tops[x]];
+		else y=fa[tops[y]];
+	}
+	if(dep[x]>dep[y]) swap(x,y);
+	return x;
+}
+void build(int m)
+{
+	sort(d+1,d+m+1,cmp);
+	cnt1=0;
+	for(int i=1;i<=m;i++) h[d[i]]=1;
+	top=0;
+	sta[++top]=1;
+	for(int i=1;i<=m;i++)
+	{
+		int u=d[i],t=lca(u,sta[top]);
+		if(t!=sta[top])
+		{
+			while(dfn[sta[top-1]]>dfn[t])	
+			{
+				mak(sta[top-1],sta[top]);
+				top--;
+			}
+			if(dfn[sta[top-1]]!=dfn[t]) 
+			{
+				mak(sta[top],t);
+				sta[top]=t;
+			}
+			else 
+			{
+				mak(sta[top],t);
+				top--;
+			}
+		}
+		sta[++top]=u;
+	}
+	for(int i=1;i<top;i++) mak(sta[i],sta[i+1]);
+}
+inline int dfs3(int u,int f)
+{
+	int nu=0,sum=0;
+	for(int i=head1[u];i;i=e1[i].nxt)	
+	{
+		int v=e1[i].to,w=e1[i].w;
+		if(v==f) continue;
+		if(h[v]) sum+=w;
+		else sum+=min(dfs3(v,u),w);
+	}
+	e1[head1[u]]={0,0,0};
+	head1[u]=0;
+	return sum;
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	int n;
+	read(n);
+	for(int i=1;i<n;i++) 
+	{
+		int u,v,w;
+		read(u),read(v),read(w);
+		add(u,v,w);
+		add(v,u,w);
+	}
+	dfs1(1,0);
+	dfs2(1,1);
+	int m;
+	read(m);
+	while(m--)
+	{
+		int k;
+		read(k);
+		for(int j=1;j<=k;j++) read(d[j]);
+		build(k);
+		print(dfs3(1,0));
+		pc('\n');
+		for(int i=1;i<=k;i++) h[d[i]]=0;
+	}
+	return 0;
+}
+
