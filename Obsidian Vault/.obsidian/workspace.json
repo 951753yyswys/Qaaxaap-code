@@ -1,0 +1,208 @@
+{
+  "main": {
+    "id": "67645645d404dccc",
+    "type": "split",
+    "children": [
+      {
+        "id": "81ac6e35af8665fa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d3735dcab89e8e3c",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2025-12-04 21.01.30.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2025-12-04 21.01.30.excalidraw"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "82b567c72cadb729",
+    "type": "split",
+    "children": [
+      {
+        "id": "86f898005c90e46d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8aceb1573f6f465f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "70c541891a933287",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "65dc9b798eae1ab7",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "a47fb3e0a48c9109",
+    "type": "split",
+    "children": [
+      {
+        "id": "01ecbcf8d317f875",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "006542e5eb0b9eac",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "未命名.canvas",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "未命名 的反向链接列表"
+            }
+          },
+          {
+            "id": "c03531b169766860",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "未命名.canvas",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "未命名 的出链列表"
+            }
+          },
+          {
+            "id": "011cdd584e07fd3b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "66048172bffe0655",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "未命名.canvas",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "未命名 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:创建新数据库": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "markdown-importer:打开 Markdown 格式转换器": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false
+    }
+  },
+  "active": "d3735dcab89e8e3c",
+  "lastOpenFiles": [
+    "Excalidraw/Drawing 2025-12-04 21.01.30.excalidraw.md",
+    "Excalidraw/Drawing 2025-12-03 22.38.19.excalidraw.md",
+    "Excalidraw/Drawing 2025-12-03 17.53.34.excalidraw.md",
+    "草稿.md",
+    "Blogs/可叹.md",
+    "未命名 2.md",
+    "Blogs",
+    "未命名 1.md",
+    "奇怪题目.md",
+    "模拟赛草稿绍一7.9.md",
+    "kaola/同人of赵泽尧&郑好/正文/第一章.md",
+    "kaola/同人of赵泽尧&郑好/设定集/Drawing 2025-12-09 22.05.03.excalidraw.md",
+    "kaola/Dictionary.md",
+    "kaola/同人of赵泽尧&郑好/设定集",
+    "kaola/同人of赵泽尧&郑好/正文",
+    "kaola/同人of赵泽尧&郑好",
+    "kaola/未命名.canvas",
+    "kaola",
+    "AT_abc417.md",
+    "欢迎.md",
+    "未命名.base",
+    "未命名.canvas",
+    "未命名 1.base",
+    "未命名 1.canvas",
+    "未命名 2.base",
+    "未命名 2.canvas",
+    "未命名 17.base",
+    "未命名 16.base",
+    "异或赛T4奇怪版.md",
+    "CF2131D题解.md",
+    "P13686 【MX-X16-T4】「DLESS-3」XOR and Split.md",
+    "NOI2025 7.9 T1 sol.md",
+    "未命名.md"
+  ]
+}
