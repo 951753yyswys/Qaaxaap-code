@@ -29,10 +29,31 @@ namespace Qaaxaap
 			for(auto ops:opt)
 			{
 				vector<int> b=a;
-				for(auto &tmp:b) tmp=dbit(tmp,ops);
-				
+				int anso=0;
+				for(int i=ops;i>=0;i--)
+				{
+					int mx=0,mi=0,flag=0;
+					for(int j=0;j<n;j++)
+					{
+						b[j]=dbit(b[j],i);
+						if(gbit(b[j],i)) 
+						{
+							flag=1;
+							break;
+						}
+						if(b[j]>mx)
+						{
+							mx=b[j];
+							mi=j;
+						}
+					}
+					if(flag) continue;
+					anso+=(1ll<<i)-b[mi];
+					b[mi]=0;
+				}
+				ans[++yans]=anso;
 			}
-			for(int i=0;i<=15;i++)
+			for(int i=0;i<=34;i++)
 			{
 				cout<<"i:"<<i<<" ans[i]"<<ans[i]<<endl;
 			}
@@ -41,7 +62,7 @@ namespace Qaaxaap
 				int b;
 				cin>>b;
 				int ansl=0;
-				for(int i=0;i<=33;i++)
+				for(int i=0;i<=31;i++)
 				{
 					if(b>=ans[i]) ansl=i;
 					else break;
