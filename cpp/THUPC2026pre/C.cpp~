@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	vector<int> pri;
+	bool not_prime[N];
+	void pre(int n) 
+	{
+		for (int i = 2; i <= n; ++i) 
+		{
+			if (!not_prime[i]) 
+				 pri.push_back(i);
+			for (int pri_j : pri) 
+			{
+				if (i * pri_j > n) break;
+				not_prime[i * pri_j] = true;
+				if (i % pri_j == 0) 
+					break;
+			}	
+		}
+	}
+	void work()
+	{
+		pre(2e5);
+		int t;
+		cin>>t;
+		while(t--)
+		{
+			int n,sum=0;
+			cin>>n;
+			int mx=0,mi=0;
+			for(int i=1;i<=n;i++)
+			{
+				if(not_prime[i]) continue;
+				int lmx;
+				lmx=min(i,n-i+1);
+				if(lmx>mx) mx=lmx,mi=i;
+			}
+			int cmx=mi,cmi=mi;
+			cout<<mi><<' ';
+			while(cmx<n&&cmi>1) cout<<++cmx<<' '<<--cmi<<' ';
+			while(cmx<n) cout<<++cmx<<' ';
+			while(cmi>1) cout<<--cmi<<' ';
+			cout<<endl;
+		}
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+

@@ -4,19 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "81ac6e35af8665fa",
+        "id": "be08a1a863545696",
         "type": "tabs",
         "children": [
           {
-            "id": "d3735dcab89e8e3c",
+            "id": "37424ae75c0d984f",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2025-12-04 21.01.30.excalidraw.md"
-              },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2025-12-04 21.01.30.excalidraw"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
             }
           }
         ]
@@ -76,7 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 277.5
   },
   "right": {
     "id": "a47fb3e0a48c9109",
@@ -169,12 +167,14 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "d3735dcab89e8e3c",
+  "active": "37424ae75c0d984f",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2025-12-12 18.03.57.excalidraw.md",
+    "Koala Dictionary.md",
+    "草稿.md",
     "Excalidraw/Drawing 2025-12-04 21.01.30.excalidraw.md",
     "Excalidraw/Drawing 2025-12-03 22.38.19.excalidraw.md",
     "Excalidraw/Drawing 2025-12-03 17.53.34.excalidraw.md",
-    "草稿.md",
     "Blogs/可叹.md",
     "未命名 2.md",
     "Blogs",
