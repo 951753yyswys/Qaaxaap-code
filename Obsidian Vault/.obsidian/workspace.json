@@ -11,13 +11,44 @@
             "id": "37424ae75c0d984f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2025-12-12 18.03.57.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2025-12-12 18.03.57.excalidraw"
+            }
+          },
+          {
+            "id": "9c1559cad803c730",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "草稿.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "草稿"
+            }
+          },
+          {
+            "id": "b210cce3e25682c0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "自定义名称 1/自定义名称 1.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "自定义名称 1"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -167,11 +198,14 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "37424ae75c0d984f",
+  "active": "b210cce3e25682c0",
   "lastOpenFiles": [
+    "草稿.md",
+    "自定义名称 1/自定义名称 1.md",
+    "Excalidraw/Drawing 2025-12-12 18.03.57.excalidraw.restored.md",
+    "自定义名称 1",
     "Excalidraw/Drawing 2025-12-12 18.03.57.excalidraw.md",
     "Koala Dictionary.md",
-    "草稿.md",
     "Excalidraw/Drawing 2025-12-04 21.01.30.excalidraw.md",
     "Excalidraw/Drawing 2025-12-03 22.38.19.excalidraw.md",
     "Excalidraw/Drawing 2025-12-03 17.53.34.excalidraw.md",
@@ -198,7 +232,6 @@
     "未命名 2.base",
     "未命名 2.canvas",
     "未命名 17.base",
-    "未命名 16.base",
     "异或赛T4奇怪版.md",
     "CF2131D题解.md",
     "P13686 【MX-X16-T4】「DLESS-3」XOR and Split.md",
