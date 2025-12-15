@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	void work()
+	{
+		int n,k;
+		string s,t;
+		cin>>n>>k;
+		cin>>s>>t;
+		s='+'+s;
+		t='+'+t;
+		vector<set<pair<int,int>>> st(2,set<pair<int,int>>());
+		int ans=0;
+		for(int i=1;i<=n;i++)
+		{
+			if(s[i]==t[i]) continue;
+			int now=s[i]-'0',fow=(s[i]-'0')^1;
+			if(st[fow].empty()) 
+			{
+				st[now].insert({i%k,i});
+				continue;
+			}
+			int opt,lst;
+			auto it=st[fow].lower_bound({i%k,0});
+			if(it==st[fow].end())
+			{
+				ans+=ceil((i-(*st[fow].begin()).second)*1.0/k);
+				st[fow].erase(st[fow].begin());
+				continue;
+			}	
+			pair<int,int> qur=*it;
+			st[fow].erase(qur),lst=qur.second;
+			ans+=ceil((i-lst)*1.0/k);
+		}
+		cout<<ans;
+	}
+}
+signed main()
+{
+	freopen("P10280_8.in","r",stdin);
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+
