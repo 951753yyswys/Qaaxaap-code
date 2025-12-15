@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=1e7+5,mod=998244353;
+	vector<int> pri;
+	int mxp[N];
+	void pre(int n)
+	{
+		mxp[1]=1;
+		for(int i=2;i<=n;i++)
+		{
+			if(!mxp[i]) 
+			{
+				mxp[i]=i;
+				pri.push_back(i);
+			}
+			for(auto pri_j:pri)
+			{
+				if(i*pri_j>n) break;
+				if(mxp[i*pri_j]==0) mxp[i*pri_j]=pri_j;
+				if(i%pri_j==0) break;
+			}
+		}
+	}
+	void work()
+	{
+		pre(1e7+2);
+		int t;
+		cin>>t;
+		while(t--)
+		{
+			int x,y;
+			cin>>x>>y;
+			vector<int> p;
+			int now=y-x;
+			while(now>1)
+			{
+				if(mxp[now]==now) p.push_back(now);
+				now/=mxp[now];
+			}
+			int ans=0x7fffffff;
+			//cout<<"p:";
+			//for(auto tmp:p) cout<<tmp<<' ';
+			//cout<<endl;
+			for(auto tmp:p) ans=min(ans,(tmp-y%tmp)%tmp);
+			if(ans==0x7fffffff) ans=-1;
+			cout<<ans<<endl;
+		}
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+
