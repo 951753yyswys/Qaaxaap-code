@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	void work()
+	{
+		int t;
+		cin>>t;
+		while(t--)
+		{
+			int n;
+			cin>>n;
+			vector<int> b(n+3),p(n+3),vis(n+3);
+			bool flag=0;
+			for(int i=1;i<=n/2;i++) cin>>b[i];
+			for(int i=1;i<=n/2;i++)
+			{
+				if(b[i]>n||vis[b[i]]) 
+				{
+					flag=1;
+					break;
+				}
+				vis[b[i]]=1;
+				p[i<<1]=b[i];
+			}
+			if(flag)
+			{
+				cout<<-1<<endl;
+				continue;
+			}
+			set<int> unu;
+			for(int i=1;i<=n;i++) if(!vis[i]) unu.insert(i);
+			for(int i=n-1;i>=1;i-=2)
+			{
+				auto it=unu.upper_bound(p[i+1]);
+				if(it==unu.begin()) 
+				{
+					flag=1;
+					break;
+				}
+				p[i]=*prev(it);
+				unu.erase(prev(it));
+			}
+			if(flag)
+			{
+				cout<<-1<<endl;
+				continue;
+			}
+			for(int i=1;i<=n;i++) cout<<p[i]<<' ';
+			cout<<endl;
+		}
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+

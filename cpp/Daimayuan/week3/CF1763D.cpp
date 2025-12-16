@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=1e9+7;
+	int fac[1010],inv[1010];
+	int qp(int d,int z)
+	{
+		int t=1;
+		while(z)
+		{
+			if(z&1) t=t*d%mod;
+			d=d*d%mod;
+			z>>=1;
+		}
+		return t;
+	}
+	int C(int bi,int sm)
+	{
+		if(sm>bi||sm<0) return 0;
+		return fac[bi]*inv[sm]%mod*inv[bi-sm]%mod;
+	}
+	void work()
+	{
+		int t;
+		cin>>t;
+		fac[0]=1,inv[0]=1;
+		for(int i=1;i<=1000;i++) fac[i]=fac[i-1]*i%mod,inv[i]=qp(fac[i],mod-2);
+		while(t--)
+		{
+			int n,i,j,x,y;
+			cin>>n>>i>>j>>x>>y;
+			int lt=0,rt=0;
+			if(x>y)
+			{
+				swap(x,y);
+				int yi=i;
+				i=n-j+1;
+				j=n-yi+1;
+			}
+			if(y==n)
+			{
+				if(j==n)
+				{
+					cout<<0<<endl;
+					continue;
+				}
+				cout<<(C(x-1,i-1)*C(y-x-1,j-i-1))%mod<<endl;
+				continue;
+			}
+			for(int k=i+1;k<j;k++) lt+=C(n-y-1,j-k-1),lt%=mod;//cout<<lt<<endl;
+			for(int k=j+1;k<n;k++) rt+=C(n-y-1,k-j-1),rt%=mod;//cout<<rt<<endl;
+			//cout<<lt<< ' '<<rt<<endl;
+			int ans=(C(x-1,i-1)*(C(y-x-1,n-x-j+i)*lt%mod+C(y-x-1,j-i-1)*rt%mod)%mod)%mod;
+			cout<<ans<<endl;
+		}
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+

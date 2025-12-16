@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int N=5e5+5,mod=998244353;
+	void work()
+	{
+		int n;
+		cin>>n;
+		vector<vector<int>> dp(2,vector<int>(n+5,0x7fffffff));
+		dp[0][0]=dp[1][0]=0;
+		for(int i=1;i<=n;i++) for(int j=1;j*(j-1)/2<=i;j++) dp[1][i]=min(dp[1][i],dp[1][i-j*(j-1)/2]+j);
+		int ans=dp[1][n];
+		cout<<ans<<' '<<ans*(ans-1)/2-n;
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0),cout.tie(0);
+	return Qaaxaap::work(),0;
+}
+
