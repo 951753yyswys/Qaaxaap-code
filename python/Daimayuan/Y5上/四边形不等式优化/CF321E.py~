@@ -1,0 +1,4 @@
+n,k=map(int,input(),split())
+mp=[]
+for i in range(0,n+1) 
+    mp.append([0]*)
