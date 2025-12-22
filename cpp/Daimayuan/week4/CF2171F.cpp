@@ -3,8 +3,29 @@
 using namespace std;
 namespace Qaaxaap
 {
+	vector<int> pri;
+	int mxp[N];
+	void pre(int n)
+	{
+		mxp[1]=1;
+		for(int i=2;i<=n;i++)
+		{
+			if(!mxp[i]) 
+			{
+				mxp[i]=i;
+				pri.push_back(i);
+			}
+			for(auto pri_j:pri)
+			{
+				if(i*pri_j>n) break;
+				if(mxp[i*pri_j]==0) mxp[i*pri_j]=pri_j;
+				if(i%pri_j==0) break;
+			}
+		}
+	}
 	void work()
 	{
+		pre(202020);
 		int t;
 		cin>>t;
 		while(t--)
