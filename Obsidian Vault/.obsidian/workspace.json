@@ -11,12 +11,14 @@
             "id": "37424ae75c0d984f",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2025-12-12 18.03.57.excalidraw.md"
+                "file": "临时板子.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2025-12-12 18.03.57.excalidraw"
+              "icon": "lucide-file",
+              "title": "临时板子"
             }
           }
         ]
@@ -169,10 +171,13 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "8aceb1573f6f465f",
+  "active": "37424ae75c0d984f",
   "lastOpenFiles": [
-    "Koala Dictionary.md",
     "异或赛T4奇怪版.md",
+    "临时板子.md",
+    "未命名 2.md",
+    "Excalidraw/Drawing 2025-12-12 18.03.57.excalidraw.md",
+    "Koala Dictionary.md",
     "未命名.md",
     "未命名 1.md",
     "自定义名称 1/自定义名称 1.md",
@@ -181,17 +186,14 @@
     "自定义名称 1/章节/第一章.md",
     "自定义名称 1/故事线",
     "自定义名称 1/章节/免责声明.md",
-    "未命名 3.md",
     "自定义名称 1/章节",
     "未命名",
     "Excalidraw/Drawing 2025-12-12 18.03.57.excalidraw.restored.md",
     "自定义名称 1",
-    "Excalidraw/Drawing 2025-12-12 18.03.57.excalidraw.md",
     "Excalidraw/Drawing 2025-12-04 21.01.30.excalidraw.md",
     "Excalidraw/Drawing 2025-12-03 22.38.19.excalidraw.md",
     "Excalidraw/Drawing 2025-12-03 17.53.34.excalidraw.md",
     "Blogs/可叹.md",
-    "未命名 2.md",
     "Blogs",
     "奇怪题目.md",
     "模拟赛草稿绍一7.9.md",
