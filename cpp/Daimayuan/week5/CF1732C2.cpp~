@@ -26,7 +26,7 @@ namespace Qaaxaap
 				cin>>l>>r;
 				ansl=ansr=l;
 				int ans=INT_MAX,mx=sum[r]-sum[l-1]-(xum[r]^xum[l-1]);
-				cout<<"/"<<mx<<endl;
+				//cout<<"/"<<mx<<endl;
 				l=lower_bound(b.begin(),b.end(),l)-b.begin();
 				r=upper_bound(b.begin(),b.end(),r)-b.begin()-1;
 				//cout<<' '<<l<<' '<<r<<endl;
@@ -36,8 +36,8 @@ namespace Qaaxaap
 					if(lt>rt) continue;
 					lt=b[lt];
 					rt=b[rt];
-					cout<<' '<<lt<<' '<<rt<<' '<<sum[rt]-sum[lt-1]-(xum[rt]^xum[lt-1])<<endl;
-					if(sum[rt]-sum[lt-1]-(xum[rt]^xum[lt-1])==mx) if(ans>r-l+1) ansl=lt,ansr=rt,ans=r-l+1;
+					//cout<<' '<<lt<<' '<<rt<<' '<<sum[rt]-sum[lt-1]-(xum[rt]^xum[lt-1])<<endl;
+					if(sum[rt]-sum[lt-1]-(xum[rt]^xum[lt-1])==mx) if(ans>rt-lt+1) ansl=lt,ansr=rt,ans=rt-lt+1;
 				}
 				cout<<ansl<<' '<<ansr<<endl;
 			}
