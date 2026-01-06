@@ -1,0 +1,130 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace DS
+{
+	class seg1
+	{
+	public:
+		struct node {int l,r,tag;};
+		vector<node> t;
+		void build(int ro,int l,int r)
+		{
+			t[ro]={l,r,0};
+			if(l==r) return;
+			int mid=l+r>>1;
+			build(ro<<1,l,mid);
+			build(ro<<1|1,mid+1,r);
+		}
+		seg1(int n){t.resize(4*n+5);build(1,1,n);}
+		void pushdown(int ro)
+		{
+			if(!t[ro].tag) return;
+			t[ro<<1].tag=t[ro].tag;
+			t[ro<<1|1].tag=t[ro].tag;
+		}
+		void cover(int ro,int l,int r)
+		{
+			if(t[ro].l>=l&&t[ro].r<=r){t[ro].tag=1;return;}pushdown(ro);
+			if(t[ro<<1].r>=l) cover(ro<<1,l,r);
+			if(t[ro<<1|1].l<=r) cover(ro<<1|1,l,r);
+		}	
+		int query(int ro,int opt)
+		{
+			if(t[ro].l==t[ro].r) return t[ro].tag;pushdown(ro);
+			if(opt<=t[ro<<1].r) return query(ro<<1,opt); else return query(ro<<1|1,opt);
+		}
+		void cover(int l,int r){cover(1,l,r);}
+		int query(int opt){return query(1,opt);}
+	};
+	class seg2
+	{
+	public:
+		struct node{int l,r,mi;};
+		vector<node> t;
+		void pushup(int ro){t[ro].mi=min(t[ro<<1].mi,t[ro<<1|1].mi);}
+		void build(int ro,int l,int r)
+		{
+			t[ro]={l,r,LLONG_MAX};
+			if(l==r) return;
+			int mid=l+r>>1;
+			build(ro<<1,l,mid);
+			build(ro<<1|1,mid+1,r);
+		}
+		seg2(int n){t.resize(4*n+5);build(1,1,n);}
+		void update(int ro,int opt,int val)
+		{
+			if(t[ro].l==t[ro].r){t[ro].mi=min(t[ro].mi,val);return;}
+			if(opt<=t[ro<<1].r) update(ro<<1,opt,val); else update(ro<<1|1,opt,val);
+			pushup(ro);
+		}
+		int query(int ro,int l,int r)
+		{
+			if(t[ro].l>=l&&t[ro].r<=r) return t[ro].mi;int mi=LLONG_MAX;
+			if(t[ro<<1].r>=l) mi=min(mi,query(ro<<1,l,r));
+			if(t[ro<<1|1].l<=r) mi=min(mi,query(ro<<1|1,l,r));
+			return mi;
+		}
+		void update(int opt,int val){update(1,opt,val);}
+		int query(int l,int r){return query(1,l,r);}
+	};
+}
+using namespace DS;
+namespace Qaaxaap
+{
+	void work()
+	{
+		int n,q;
+		cin>>n>>q;
+		seg1 tr1(n+1);seg2 tr2(n+1);
+		vector<int> lmi(n+2,LLONG_MAX),rmx(n+2,LLONG_MIN);
+		set<int> nm;
+		for(int i=0;i<=n+1;i++) nm.insert(i);
+		while(q--)
+		{
+			int opt;
+			cin>>opt;
+			if(!opt)
+			{
+				int l,r,x;
+				cin>>l>>r>>x;
+				if(!x)
+				{
+					int now=l;
+					while(1)
+					{
+						now=*nm.lower_bound(now);
+						if(now>r) break;
+						nm.erase(now);
+					}
+				}
+				else tr2.update(l,r);
+			}	
+			else 
+			{
+				int idx;
+				cin>>idx;
+				if(nm.count(idx)==0) 
+				{
+					cout<<"NO"<<endl;
+					continue;
+				}
+				int L=*prev(nm.lower_bound(idx))+1,R=*nm.upper_bound(idx)-1;
+				//cout<<"L "<<L<<" R "<<R<<endl;
+				if(tr2.query(L,R)<=R) 
+				{
+					cout<<"YES"<<endl;
+					continue;
+				}
+				cout<<"N/A"<<endl;
+			}
+		}
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr),cout.tie(nullptr);
+	return Qaaxaap::work(),0;
+}
+
