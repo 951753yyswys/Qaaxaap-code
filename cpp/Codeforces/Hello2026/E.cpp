@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+namespace Qaaxaap
+{
+	const int mod=998244353;
+	void work()
+	{
+		int t;
+		cin>>t;
+		vector<vector<int>> dzd(3001);
+		for(int i=1;i<=3000;i++) for(int j=i;j<=3000;j+=i) dzd[j].push_back(i);
+		while(t--)
+		{
+			int n,m;
+			cin>>n>>m;
+			vector<int> a(n);
+			for(auto &tmp:a) cin>>tmp;
+			if(a[0]!=0&&a[0]!=1) 
+			{
+				cout<<0<<endl;
+				continue;
+			}
+			a[0]=1;
+			if(a[1]!=0&&a[1]!=2) 
+			{
+				cout<<0<<endl;
+				continue;
+			}
+			a[1]=2;
+			if(n==2)
+			{
+				cout<<1<<endl;
+				continue;
+			}
+			vector<int> dp(m+1),ndp(m+1);
+			dp[2]=1;
+			for(int i=1;i<n-1;i++)
+			{
+				for(auto &tmpp:ndp) tmpp=0;
+				int fn=a[i+1];
+				for(int x=1;x<=m;x++)
+				{
+					int w=dp[x];
+					if(!w) continue;
+					for(auto d:dzd[x])
+					{
+						int y=x+d;
+						if(y>m) continue;
+						if(fn!=0&&y!=fn) continue;
+						ndp[y]=(ndp[y]+w)%mod;
+					}
+				}
+				dp.swap(ndp);
+			}
+			int ans=0;
+			for(int i=1;i<=m;i++) ans=(ans+dp[i])%mod;
+			cout<<ans<<endl;
+		}
+	}
+}
+signed main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr),cout.tie(nullptr);
+	return Qaaxaap::work(),0;
+}
+

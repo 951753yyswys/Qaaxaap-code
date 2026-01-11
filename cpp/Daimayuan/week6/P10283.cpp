@@ -32,7 +32,7 @@ namespace Qaaxaap
 	}
 	void pushdown(int ro)
 	{
-		if(t[ro].ls+t[ro].rs==0) 
+		if(t[ro].ls+t[ro].rs==0)
 		{
 			t[ro].ls=++cnt;
 			t[ro].rs=++cnt;
