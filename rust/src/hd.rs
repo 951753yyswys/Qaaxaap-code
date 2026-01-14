@@ -1,5 +1,0 @@
-fn main()
-{
-    let x:i64=1;
-    println!("{x}");
-}
