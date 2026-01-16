@@ -1,19 +1,26 @@
 #include<utility>
 #include<iostream>
 #include"../include/cursor.h"
+#include"../include/tui.h"
 int Cursor::CursorID=0;
 //int ID,X_fact,Y_fact,X_screen,Y_screen;
 Cursor::Cursor():ID(CursorID++),X_fact(0),Y_fact(0),X_screen(0),Y_screen(0){};
 Cursor::~Cursor()=default;
 void Cursor::Up() {//Cursor up
 	std::cout<<"\x1b[1A"<<std::flush;
-	if(Y_fact) Y_fact--;
-	if(Y_screen) Y_screen--;
+	if(Y_fact) {
+		Y_fact--;
+		if(Y_screen) Y_screen--;
+		else ROW_BEGIN--;
+	}	
 }
 void Cursor::Down() {//Cursor down
 	std::cout<<"\x1b[1B"<<std::flush;
-	Y_fact++;
-	Y_screen++;
+	if(Y_fact<ROW_FACT-1) {
+		Y_fact++;
+		if(Y_fact<ROW_END+1) Y_screen++;
+		else ROW_BEGIN++;
+	}		
 }
 void Cursor::Left() {//Cursor left 
 	std::cout<<"\x1b[1D"<<std::flush;

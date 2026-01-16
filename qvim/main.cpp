@@ -1,10 +1,12 @@
 #include<iostream>
 #include<fstream>
 #include<vector>
+#include<utility>
 #ifdef _WIN32
 #include <conio.h>
 #else
 #include <termios.h>
+#include <sys/ioctl.h>
 #include <unistd.h>
 #include <sys/select.h>
 #include <sys/time.h>
@@ -25,7 +27,11 @@ enum KeyCode {
     KEY_UP = 256,
     KEY_DOWN = 257,
     KEY_LEFT = 258,
-    KEY_RIGHT = 259
+    KEY_RIGHT = 259,
+	KEY_END = 260,
+	KEY_HOME = 261,
+	KEY_PAGEUP = 262,
+	KEY_PAGEDOWN = 263
 };
 
 // 最简单的 getch 函数
@@ -93,6 +99,16 @@ int getchex() {
                     case 'B': return KEY_DOWN;
                     case 'C': return KEY_RIGHT;
                     case 'D': return KEY_LEFT;
+					case 'F': return KEY_END;
+					case 'H': return KEY_HOME;
+					case '5': {
+						char Tmp=getchar();
+						return KEY_PAGEUP;
+					}
+					case '6': {
+						char Tmp=getchar();
+						return KEY_PAGEDOWN;
+					}
                 }
             } else if (second_char != -1) {
                 // 有其他字符，但不是方向键
@@ -127,18 +143,35 @@ char getch() {
 }
 Buffer BUFFER=Buffer();
 vector<Cursor> CURSORS;
-int ROW_BEGIN=0,ROW_END=0;
+int ROW_BEGIN=0,ROW_END=0,ROW_FACT=0,TUI_COL=10,TUI_ROW=10;
 namespace Help {
 	void GetHelp() {
 		cout<<"=======欢迎使用 Qaaxaap-vim========"<<endl;
 		cout<<"目前还在测试阶段，仅支持 qvim [file name] 以 qvim 打开文件"<<endl;
 	}
 }
+std::pair<int,int> getTerminalSizeWithIoctl() {
+    struct winsize w;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+
+//    std::cout << "终端大小 (ioctl):" << std::endl;
+//    std::cout << "行数: " << w.ws_row << std::endl;
+//    std::cout << "列数: " << w.ws_col << std::endl;
+//    std::cout << "水平像素: " << w.ws_xpixel << std::endl;
+//    std::cout << "垂直像素: " << w.ws_ypixel << std::endl;
+	return {w.ws_col,w.ws_row};
+}
 int main(int argc,char* argv[]) {
 	if(argc<2) {
 		Help::GetHelp();
 		return 0;
 	}
+	//std::ofstream DeBugLogs("qvim.log",std::ios::trunc);
+	cout<<"\x1b[?1049h"<<flush;
+	tui::getTerminalSize();
+	CURSORS.push_back(Cursor());
+	for(auto &Cur:CURSORS)
+		Cur.Move(0,0),Cur.Move_fact(0,0);
 	std::string FileName=argv[1];
 	std::ifstream inFile(FileName.c_str());
 	if(!inFile) {
@@ -147,7 +180,7 @@ int main(int argc,char* argv[]) {
 	else {
 		std::string Line;
 		while(std::getline(inFile,Line)) {
-			//std::cerr<<Line<<endl<<endl;
+			//DeBugLogs<<"Line:"<<ROW_FACT<<" Str:"<<Line<<endl;
 			std::string Ins="";
 			for(char c:Line) {
 				if(c==9) 
@@ -156,61 +189,109 @@ int main(int argc,char* argv[]) {
 				else 
 					Ins+=c;
 			}
-			ROW_END++;
+			ROW_FACT++;
 			BUFFER.NewLine();
-			BUFFER.Insert(BUFFER.size()-1,0,Ins);
+			BUFFER.Insert(ROW_FACT-1,0,Ins);
 		}
-		ROW_END--;
-		ROW_END=std::max(0,ROW_END);
 		inFile.close();
 	}
+	if(BUFFER.size()==0)
+		BUFFER.NewLine(),ROW_FACT++;
 //For Test
-	cout<<"\x1b[?1049h"<<flush;
-	CURSORS.push_back(Cursor());
 	cin>>std::noskipws;
-	if(BUFFER.size()==0) 
-		BUFFER.NewLine();
+	for(auto &Cur:CURSORS)
+		Cur.Move(0,0),Cur.Move_fact(0,0);
+	//DeBugLogs<<"TUI size:"<<TUI_COL<<' '<<TUI_ROW<<endl;
+	//DeBugLogs<<"File rows:"<<ROW_FACT<<endl;
+	//DeBugLogs<<"First Line:"<<BUFFER.ReadLine(0)<<endl;
 	tui::draw();
 	while(1) {
+		//for(auto Cur:CURSORS) {
+			//DeBugLogs<<"Cursor Place:("<<Cur.Place_fact().first<<","<<Cur.Place_fact().second<<")"<<endl;
+			//DeBugLogs<<"Cursor Screen:("<<Cur.Place_screen().first<<","<<Cur.Place_screen().second<<")"<<endl;
+			//DeBugLogs<<"ROW_BEGIN:"<<ROW_BEGIN<<endl;
+			//DeBugLogs<<"ROW_END:"<<ROW_END<<endl;
+		//}
 		int Chr;
 		Chr=getchex();
 		if(Chr==KEY_ESC) break;
-		if(Chr==9) {
+		else if(Chr==9) {
 			for(int i=1;i<=4;i++) {
 				Edit::Insert(' ');
 			}
 		}
-		if(Chr>=32&&Chr<=126||Chr==KEY_ENTER) Edit::Insert((char)Chr);
-		if(Chr==127) Edit::Delete();
-		if(Chr==KEY_UP) {
+		else if(Chr==127) Edit::Delete();
+		else if(Chr==KEY_UP) {
 			for(auto &Cur:CURSORS) {
-				if(Cur.Place_screen().second>0) 
+				if(Cur.Place_screen().second>=0) 
 					Cur.Up();
 			}
 		}
-		if(Chr==KEY_DOWN) {
+		else if(Chr==KEY_DOWN) {
 			for(auto &Cur:CURSORS) {
-				if(Cur.Place_screen().second<BUFFER.size()-1)
+				if(Cur.Place_screen().second<ROW_FACT-1)
 					Cur.Down();
 			}
 		}
-		if(Chr==KEY_LEFT) {
+		else if(Chr==KEY_LEFT) {
 			for(auto &Cur:CURSORS) {
 				if(Cur.Place_screen().first>0)
 					Cur.Left();
 			}
 		}
-		if(Chr==KEY_RIGHT) {
+		else if(Chr==KEY_RIGHT) {
 			for(auto &Cur:CURSORS) {
 				if(Cur.Place_screen().first<BUFFER.LineSize(Cur.Place_fact().second))
 					Cur.Right();
 			}
 		}
-		for(auto &Cur:CURSORS) {
-			auto [x,y]=Cur.Place_screen();
-			if(x>BUFFER.LineSize(y)) Cur.Move(BUFFER.LineSize(y),y);
+		else if(Chr==KEY_END) {
+			for(auto &Cur:CURSORS) {
+				Cur.Move(BUFFER.LineSize(Cur.Place_fact().second),Cur.Place_screen().second);
+			}
 		}
+		else if(Chr==KEY_HOME) {
+			for(auto &Cur:CURSORS) {
+				Cur.Move(0,Cur.Place_screen().second);
+			}
+		}
+		else if(Chr==KEY_PAGEUP) {
+			if(CURSORS.size()==1) {
+				tui::draw();
+				auto &Cur=*CURSORS.begin();
+				auto [x,y]=Cur.Place_fact();
+				if(y>TUI_ROW) {
+					Cur.Move_fact(BUFFER.LineSize(y-TUI_ROW),std::max(0,y-TUI_ROW)),ROW_BEGIN-=TUI_ROW;
+					Cur.Move(std::min(x,Cur.Place_screen().first),Cur.Place_screen().second);
+				}
+				else 
+					Cur.Move(std::min(BUFFER.LineSize(0),x),0);
+				//cout<<"Up"<<flush;
+				//usleep(300000);
+
+			} 
+		}
+		else if(Chr==4) {
+			std::ofstream outFile(FileName.c_str(),std::ios::trunc);
+			for(int i=0;i<BUFFER.size();i++) {
+				//std::cerr<<BUFFER.ReadLine(i)<<endl;
+				std::string Str=BUFFER.ReadLine(i);
+				for(int i=0;i<Str.size();i++) 
+					if(Str[i]!=0)
+						outFile<<Str[i];
+				if(i+1<BUFFER.size()) outFile<<endl;
+			}
+			outFile.close();
+			cout<<"File Write!"<<flush;
+			usleep(300000);
+		}
+		else Edit::Insert((char)Chr);
+		for(auto &Cur:CURSORS) {
+			auto [x,y]=Cur.Place_fact();
+			if(x>BUFFER.LineSize(y)) Cur.Move(BUFFER.LineSize(y),Cur.Place_screen().second);
+		} 
 		tui::draw();
+		//getTerminalSizeWithIoctl();
 	}
 	cout<<std::skipws;
 	cout<<"\x1b[?1049l"<<flush;

@@ -4,6 +4,7 @@
 #include<vector>
 extern int ROW_BEGIN;
 extern int ROW_END;
+extern int ROW_FACT;
 class Cursor 
 {
 private:
