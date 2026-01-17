@@ -146,8 +146,10 @@ vector<Cursor> CURSORS;
 int ROW_BEGIN=0,ROW_END=0,ROW_FACT=0,TUI_COL=10,TUI_ROW=10;
 namespace Help {
 	void GetHelp() {
-		cout<<"=======欢迎使用 Qaaxaap-vim========"<<endl;
-		cout<<"目前还在测试阶段，仅支持 qvim [file name] 以 qvim 打开文件"<<endl;
+		cout<<"-------欢迎使用 Qaaxaap-vim-------"<<endl;
+		cout<<"|唐诗的练手项目，勉强可以编辑文本|"<<endl;
+		cout<<"|用法：qvim [file name]          |"<<endl;
+		cout<<"----------------------------------"<<endl;
 	}
 }
 std::pair<int,int> getTerminalSizeWithIoctl() {
