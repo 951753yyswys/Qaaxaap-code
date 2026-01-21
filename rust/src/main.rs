@@ -1,3 +1,8 @@
+mod arc125d;
+mod cf1718a2;
+mod cf1935d;
+mod cf1672d;
+mod cf1707a;
 mod yyswys;
 mod cf2174c2;
 mod cf1766e;

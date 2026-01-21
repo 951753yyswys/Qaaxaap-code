@@ -21,4 +21,26 @@ pub fn scanner()->Scanner<'static>{let stdin=io::stdin();Scanner::new(stdin.lock
 fn main() {
     let stdin=io::stdin();
     let mut sc=Scanner::new(stdin.lock());
+    let t=sc.readi64();
+    for _ in 0..t {
+        let n=sc.readi64();
+        let c=sc.readi64();
+        let mut ans=0i64;
+        let mut eve=0i64;
+        let mut odd=0i64;
+        let mut s=vec![0i64;n as usize+1];
+        for i in 1..=n as usize {
+            s[i]=sc.readi64();
+            ans-=s[i]/2i64+1;
+            ans-=c-s[i]+1;
+            if s[i]&1==1 {
+                odd+=1;
+            }
+            else {
+                eve+=1;
+            }
+        }
+        ans+=(c+1)*(c+2)/2+(eve+1)*eve/2+odd*(odd+1)/2;
+        println!("{}",ans);
+    }
 }

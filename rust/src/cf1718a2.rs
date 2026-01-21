@@ -1,4 +1,5 @@
 use std::io::{self,BufRead,StdinLock};
+use std::collections::HashSet;
 use std::{i64,str};
 pub struct Scanner<'a> {stdin: StdinLock<'a>,buf: Vec<u8>,pos: usize,}
 impl<'a> Scanner<'a> {pub fn new(stdin: StdinLock<'a>)->Self {Self {stdin,buf:Vec::new(),pos: 0,}}   
@@ -21,4 +22,23 @@ pub fn scanner()->Scanner<'static>{let stdin=io::stdin();Scanner::new(stdin.lock
 fn main() {
     let stdin=io::stdin();
     let mut sc=Scanner::new(stdin.lock());
+    let t=sc.readi64();
+    for _ in 0..t {
+        let n=sc.readi64() as usize;
+        let mut ans=n;
+        let mut a=vec![0i64;n];
+        let mut prf=0i64;
+        let mut set=HashSet::<i64>::new();
+        set.insert(0i64);
+        for i in 0..n {
+            a[i]=sc.readi64();
+            prf^=a[i];
+            if set.contains(&prf) {
+                ans-=1;
+                set.clear();
+            }
+            set.insert(prf);
+        }
+        println!("{}",ans);
+    }
 }

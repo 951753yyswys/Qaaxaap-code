@@ -20,5 +20,59 @@ impl<'a> Scanner<'a> {pub fn new(stdin: StdinLock<'a>)->Self {Self {stdin,buf:Ve
 pub fn scanner()->Scanner<'static>{let stdin=io::stdin();Scanner::new(stdin.lock())}
 fn main() {
     let stdin=io::stdin();
-    let mut sc=Scanner::new(stdin.lock());
+    let mut scanner=Scanner::new(stdin.lock());
+    let t=scanner.readi64();
+    for _ in 0..t {
+        let n=scanner.readi64() as usize;
+        let mut a=vec![0i64;n+1];
+        let mut b=vec![0i64;n+1];
+        let mut cnt=vec![0i64;n+1];
+        for i in 1..=n as usize {
+            a[i]=scanner.readi64();
+        }
+        for i in 1..=n as usize {
+            b[i]=scanner.readi64();
+        }
+        let mut i=n as usize;
+        let mut j=n as usize;
+        let mut ans=true;
+        while j>0 {
+            if b[j]==b[j-1] {
+                cnt[b[j] as usize]+=1;
+                j-=1;
+            }
+            else {
+                if a[i]==b[j] {
+                    j-=1;
+                    i-=1;
+                }
+                else {
+                    cnt[a[i] as usize]-=1;
+                    if cnt[a[i] as usize]<0 {
+                        ans=false;
+                        break;
+                    }
+                    i-=1;
+                }
+            }
+        }
+        if !ans {
+            println!("No");
+            continue;
+        }
+        while i>0 {
+            cnt[a[i] as usize]-=1;
+            if cnt[a[i] as usize]<0 {
+                ans=false;
+                break;
+            }
+            i-=1;
+        }
+        if !ans {
+            println!("No");
+        }
+        else {
+            println!("Yes");
+        }
+    }
 }

@@ -1,3 +1,4 @@
+use std::fs::read_link;
 use std::io::{self,BufRead,StdinLock};
 use std::{i64,str};
 pub struct Scanner<'a> {stdin: StdinLock<'a>,buf: Vec<u8>,pos: usize,}
@@ -20,5 +21,34 @@ impl<'a> Scanner<'a> {pub fn new(stdin: StdinLock<'a>)->Self {Self {stdin,buf:Ve
 pub fn scanner()->Scanner<'static>{let stdin=io::stdin();Scanner::new(stdin.lock())}
 fn main() {
     let stdin=io::stdin();
-    let mut sc=Scanner::new(stdin.lock());
+    let mut scanner=Scanner::new(stdin.lock());
+    let t=scanner.readi64();
+    for _ in 0..t {
+        let n=scanner.readi64();
+        let q=scanner.readi64();
+        let mut a=vec![0i64;n as usize+1];
+        let mut man=vec![0i64;n as usize+1];
+        for i in 1..=n as usize {
+            a[i]=scanner.readi64();
+        }
+        let mut ans=0i64;
+        let mut iq=0i64;
+        for i in (1..=n as usize).rev() {
+            if iq>=a[i] {
+                ans+=1;
+                man[i]=1;
+            }
+            else {
+                if iq<q {
+                    iq+=1;
+                    ans+=1;
+                    man[i]=1;
+                }
+            }
+        }
+        for i in 1..=n as usize {
+            print!("{}",man[i]);
+        }
+        println!("");
+    }
 }
